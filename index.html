@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>FundedNext Content Virality Playbook V5</title>
+<style>
+  :root{
+    --bg:#0a0c10; --bg2:#0f131a; --panel:#12171f; --panel2:#161c26;
+    --line:#222b38; --line2:#2c3746;
+    --text:#e6ebf2; --muted:#93a1b3; --dim:#6b7889;
+    --brand:#00d3a7; --brand2:#00b892; --accent:#4f9cff; --warn:#ffb84d; --bad:#ff6b6b;
+    --radius:14px; --maxw:900px;
+    --mono:'SF Mono',ui-monospace,'Roboto Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* Layout */
+  .wrap{display:flex;min-height:100vh}
+  nav.side{width:270px;flex:0 0 270px;background:var(--bg2);border-right:1px solid var(--line);
+    position:sticky;top:0;height:100vh;overflow-y:auto;padding:26px 18px}
+  main{flex:1;min-width:0;padding:44px 40px 120px;max-width:calc(var(--maxw) + 80px);margin:0 auto}
+
+  .brandmark{font-weight:700;font-size:15px;letter-spacing:.02em;display:flex;align-items:center;gap:9px;margin-bottom:4px}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--brand);box-shadow:0 0 12px var(--brand)}
+  .side .ver{color:var(--dim);font-size:12px;margin-bottom:22px;font-family:var(--mono)}
+  .side h4{color:var(--dim);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:20px 0 8px;font-weight:600}
+  .side a{display:block;color:var(--muted);padding:6px 10px;border-radius:8px;font-size:14px;border-left:2px solid transparent}
+  .side a:hover{background:var(--panel);color:var(--text);text-decoration:none}
+  .side a.active{color:var(--brand);border-left-color:var(--brand);background:var(--panel)}
+
+  /* Header */
+  .hero{margin-bottom:14px}
+  .kicker{color:var(--brand);font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+  h1{font-size:40px;line-height:1.12;margin:10px 0 12px;letter-spacing:-.02em;font-weight:750}
+  .lede{color:var(--muted);font-size:18px;max-width:640px}
+  .flags{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 8px}
+  .flag{font-size:12px;font-family:var(--mono);color:var(--dim);border:1px solid var(--line);padding:5px 10px;border-radius:999px}
+  .internal{border:1px solid var(--line2);background:linear-gradient(180deg,rgba(255,184,77,.06),transparent);
+    color:var(--warn);border-radius:10px;padding:10px 14px;font-size:13px;margin:20px 0 0;display:inline-block}
+
+  section{padding-top:52px;margin-top:-8px}
+  section > h2{font-size:26px;letter-spacing:-.01em;margin-bottom:6px;font-weight:700;scroll-margin-top:24px}
+  section > .sub{color:var(--muted);margin-bottom:22px;max-width:680px}
+  h3{font-size:18px;margin:28px 0 10px;font-weight:650}
+  p{margin:10px 0;color:var(--text)}
+  .muted{color:var(--muted)}
+  ul,ol{margin:10px 0 10px 22px}
+  li{margin:6px 0}
+  strong{color:#fff;font-weight:650}
+  code{font-family:var(--mono);font-size:.86em;background:var(--panel2);border:1px solid var(--line);padding:1px 6px;border-radius:6px;color:var(--brand)}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:16px 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:16px 0}
+  .tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .tile .t{font-family:var(--mono);font-size:12px;color:var(--brand);letter-spacing:.06em;text-transform:uppercase}
+  .tile .big{font-size:22px;font-weight:700;margin:6px 0 2px}
+  .tile p{font-size:13.5px;color:var(--muted);margin:6px 0 0}
+
+  .callout{border-left:3px solid var(--brand);background:var(--panel);border-radius:0 12px 12px 0;padding:14px 18px;margin:16px 0}
+  .callout.warn{border-left-color:var(--warn)}
+  .callout.warn strong{color:var(--warn)}
+  .callout .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:4px}
+
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:16px 0}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{background:var(--panel2);color:var(--muted);font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--line2)}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:rgba(255,255,255,.015)}
+  td .g{color:var(--brand);font-family:var(--mono);font-size:.9em}
+
+  .phase-row{display:flex;gap:0;margin:18px 0;flex-wrap:wrap}
+  .phase{flex:1;min-width:150px;background:var(--panel);border:1px solid var(--line);padding:16px;position:relative}
+  .phase:first-child{border-radius:12px 0 0 12px}
+  .phase:last-child{border-radius:0 12px 12px 0}
+  .phase .n{font-family:var(--mono);color:var(--dim);font-size:11px}
+  .phase .nm{font-weight:700;margin:2px 0 6px;font-size:15px}
+  .phase .gate{color:var(--brand);font-size:12.5px;font-family:var(--mono)}
+  .phase p{font-size:13px;color:var(--muted);margin-top:8px}
+
+  .pill{display:inline-block;font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:6px;border:1px solid var(--line2);color:var(--muted);margin:2px 4px 2px 0}
+  .pill.good{color:var(--brand);border-color:rgba(0,211,167,.4)}
+  .pill.new{color:var(--accent);border-color:rgba(79,156,255,.4)}
+
+  .steps{counter-reset:s;list-style:none;margin-left:0}
+  .steps li{counter-increment:s;position:relative;padding-left:42px;margin:14px 0}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:8px;
+    background:var(--panel2);border:1px solid var(--line2);color:var(--brand);font-family:var(--mono);font-size:13px;
+    display:flex;align-items:center;justify-content:center;font-weight:600}
+
+  .check{list-style:none;margin-left:0}
+  .check li{padding-left:28px;position:relative;margin:8px 0}
+  .check li::before{content:"✓";position:absolute;left:0;color:var(--brand);font-weight:700}
+  .ban li::before{content:"✕";color:var(--bad)}
+
+  footer{color:var(--dim);font-size:13px;border-top:1px solid var(--line);margin-top:60px;padding-top:20px}
+
+  .menu-btn{display:none}
+  @media(max-width:880px){
+    nav.side{position:fixed;left:0;top:0;transform:translateX(-100%);transition:transform .22s ease;z-index:40;box-shadow:0 0 40px rgba(0,0,0,.5)}
+    nav.side.open{transform:translateX(0)}
+    main{padding:70px 20px 100px}
+    h1{font-size:30px}
+    .menu-btn{display:flex;position:fixed;top:14px;left:14px;z-index:50;background:var(--panel);border:1px solid var(--line2);
+      color:var(--text);border-radius:10px;width:42px;height:42px;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+    .scrim{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:35}
+    .scrim.open{display:block}
+  }
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+<div class="scrim" id="scrim"></div>
+<div class="wrap">
+  <nav class="side" id="side">
+    <div class="brandmark"><span class="dot"></span>FundedNext</div>
+    <div class="ver">Content Virality Playbook · V5 · Jul 2026</div>
+    <h4>Foundations</h4>
+    <a href="#overview">Overview</a>
+    <a href="#model">The Distribution Model</a>
+    <a href="#platforms">Platform Cheat Sheet</a>
+    <h4>The Plays</h4>
+    <a href="#cliffhanger">The Cliffhanger System</a>
+    <a href="#pillars">Content Pillars</a>
+    <a href="#hooks">Hook Toolkit</a>
+    <a href="#firsthour">First-Hour Tactics</a>
+    <a href="#packaging">Thumbnails & Captions</a>
+    <h4>Execution</h4>
+    <a href="#targets">Growth Targets</a>
+    <a href="#checklist">Pre-Publish Checklist</a>
+    <a href="#brand">Brand Guardrails</a>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <div class="kicker">FOR COMPANY INTERNAL USE ONLY</div>
+      <h1>FundedNext Content Virality Playbook</h1>
+      <p class="lede">The RM field manual for growing Instagram followers and YouTube views/subscribers — built on the live 2026 algorithm models. Short-form is the discovery engine; the full video is the destination.</p>
+      <div class="flags">
+        <span class="flag">YouTube · Shorts + Long-Form</span>
+        <span class="flag">Instagram Reels</span>
+        <span class="flag">Facebook</span>
+        <span class="flag">TikTok</span>
+        <span class="flag">X</span>
+      </div>
+      <div class="internal">Internal document. Derived from the <code>platform-content-virality</code> skill (single source of truth, calibrated July 2026). When the skill updates, regenerate this page — don't hand-edit numbers.</div>
+    </div>
+
+    <section id="overview">
+      <h2>Overview</h2>
+      <p class="sub">What this playbook is for, and the one idea that runs through all of it.</p>
+      <p>Every platform in 2026 runs an <strong>interest-based discovery feed</strong>, not a follower feed. Reach is earned per-post by surviving a sequence of algorithmic gates — not granted by your follower count. That means a small account can reach far beyond its size, and a big account gets no free pass.</p>
+      <p>Our growth goals — more IG followers, more YouTube views and subscribers — come from one repeatable motion:</p>
+      <div class="grid">
+        <div class="tile"><div class="t">Discovery</div><div class="big">Short-form</div><p>Shorts, Reels, TikToks win new non-followers. This is top-of-funnel.</p></div>
+        <div class="tile"><div class="t">Depth</div><div class="big">Long-form</div><p>The full video converts a viewer into a subscriber and a believer.</p></div>
+        <div class="tile"><div class="t">The bridge</div><div class="big">Cliffhangers</div><p>Short-form ends on tension that only the full video resolves. Channels running both grow <strong>41% faster</strong>.</p></div>
+      </div>
+      <div class="callout"><span class="lbl">The prime directive</span>Fix the <strong>psychology</strong> first — attention, emotion, the urge to send it to one friend. The algorithm signals are just the measurement. Content people genuinely want to watch and share is what the gates are built to detect.</div>
+    </section>
+
+    <section id="model">
+      <h2>The Distribution Model</h2>
+      <p class="sub">Every post moves through four phases. Each phase has one gate metric. Fail the gate and distribution stops — a strong later signal cannot rescue a failed earlier one.</p>
+      <div class="phase-row">
+        <div class="phase"><div class="n">PHASE 1</div><div class="nm">Seed</div><div class="gate">0–60 min</div><p>Tiny interest-matched test cohort. Gate = the hook (hold rate / swipe rate / CTR).</p></div>
+        <div class="phase"><div class="n">PHASE 2</div><div class="nm">Resonance</div><div class="gate">1–48 hrs</div><p>Larger cohort. Gate = shares + watch time. "Would someone send this?"</p></div>
+        <div class="phase"><div class="n">PHASE 3</div><div class="nm">Expansion</div><div class="gate">1–7 days</div><p>Broad strangers. Gate = signals hold outside your niche.</p></div>
+        <div class="phase"><div class="n">PHASE 4</div><div class="nm">Explosive</div><div class="gate">1 week+</div><p>Self-reinforcing. Shares/loops accelerate as the audience widens.</p></div>
+      </div>
+      <div class="callout warn"><span class="lbl">Phase gating</span>A video that can't survive the <strong>seed test</strong> can't go viral — full stop. Most "good" content dies in Phase 2: watchable, but not shareable. Engineer the share, not just the watch.</div>
+    </section>
+
+    <section id="platforms">
+      <h2>Platform Cheat Sheet</h2>
+      <p class="sub">The 2026 gate metric and top signals per platform. These are the numbers to coach creators against.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Platform</th><th>Phase-1 gate</th><th>Top signals (2026)</th><th>What to know</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>YouTube<br>Long-Form</strong></td>
+              <td><span class="g">CTR ≥4%</span> in 48h · <span class="g">30s retention ≥70%</span></td>
+              <td>Satisfaction ~35% · AVD ~35% · CTR ~20% · Session ~10%. Shares & saves ≈5× likes.</td>
+              <td>Establish value in <strong>7 seconds</strong>. "Quality CTR": clicking then bouncing is worse than not clicking. Feb-2026 Browse matches by <strong>micro-niche</strong> — own one lane. Evergreen via Search.</td>
+            </tr>
+            <tr>
+              <td><strong>YouTube<br>Shorts</strong></td>
+              <td><span class="g">Viewed-vs-Swiped ≥50%</span> · <span class="g">Completion ≥70%</span></td>
+              <td>Loop/rewatch ≥15–20% · cross-platform shares (WhatsApp/iMessage/X).</td>
+              <td>Frame 1 <em>is</em> the content — no intros. Priority test now <strong>30–60 min</strong>. Ranks in Search separately from long-form. The funnel to long-form is the whole point.</td>
+            </tr>
+            <tr>
+              <td><strong>Instagram<br>Reels</strong></td>
+              <td><span class="g">3-sec hold ≥60%</span></td>
+              <td>Watch time (#1) · <strong>DM sends 3–5× likes</strong> (#1 for non-followers) · saves 3× · completion ≥50% for Explore.</td>
+              <td>Tested on <strong>non-followers first</strong>. Watermarked/reposted = excluded. "Your Algorithm" (now on Feed too) = match declared topics. Use Trial Reels. Raw &gt; polished.</td>
+            </tr>
+            <tr>
+              <td><strong>Facebook</strong><br><span class="muted">Reels + Feed</span></td>
+              <td><span class="g">Watch-through</span> · ~90% completion can 10× reach</td>
+              <td><strong>Private shares</strong> (Messenger/WhatsApp) outrank likes · UTIS interest survey · saves.</td>
+              <td><span class="pill new">NEW</span> ~50% of feeds are now strangers. Original uploads only (video is fingerprinted). One clip → 4 Meta surfaces (~3B ceiling) via the cross-app graph.</td>
+            </tr>
+            <tr>
+              <td><strong>TikTok</strong></td>
+              <td><span class="g">Completion ≥70%</span> · "qualified views" = 5s+</td>
+              <td>Watch time ~40–50% · shares 3× likes · rewatch · saves. Comments (quality, not count).</td>
+              <td><strong>Follower-first</strong> in 2026 — post when followers are online. Engagement bait is penalized. US algorithm forked (Jan 2026) — re-baseline US benchmarks.</td>
+            </tr>
+            <tr>
+              <td><strong>X</strong></td>
+              <td>First 6 hours = the whole window</td>
+              <td>Reply-with-author-reply = <strong>150× a like</strong> · reply 27× · bookmark 10× · repost 2×.</td>
+              <td>Reply bait &gt; like bait. Links in the main post cut reach — put them in replies. Constructive framing (2026 sentiment scoring discounts rage-bait).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="font-size:13.5px">Weights are priors from platform research, not FN-calibrated production values. Treat as directional until the engine's calibration loop runs on our own data.</p>
+    </section>
+
+    <section id="cliffhanger">
+      <h2>The Cliffhanger System</h2>
+      <p class="sub">How we turn short-form reach into full-video views and subscribers — without tanking the Short's own completion gate.</p>
+      <p>A cliffhanger Short/Reel opens with a <strong>result or tension</strong>, delivers a self-contained micro-payoff, then points to the full video for the deeper resolution. The algorithm rewards this: YouTube explicitly connects your Shorts audience to your long-form, and cross-format channels grow <strong>41% faster</strong>.</p>
+
+      <h3>The structure</h3>
+      <ol class="steps">
+        <li><strong>Open on the payoff or the stakes</strong> (0–2s). "This trader turned a $15K challenge into a $4,200 payout — in one week." No intro, no logo.</li>
+        <li><strong>Deliver one real micro-insight</strong> (the Short must satisfy on its own). Give them <em>something</em> complete, or completion collapses and it never funnels.</li>
+        <li><strong>Cut on the open loop</strong> (last 3s). "The exact rule that would've blown the account is in the full breakdown." Point to the full video — pinned comment, end card, "link/▶ full video."</li>
+        <li><strong>Make the full video deliver</strong> the promised resolution in the first 30 seconds — or the cross-over audience bounces and YouTube reads a broken promise.</li>
+      </ol>
+
+      <div class="callout warn"><span class="lbl">The trap to avoid</span>A pure tease that withholds <em>everything</em> frustrates viewers → they swipe → completion drops below the 70% gate → the Short dies in seed and funnels no one. <strong>Satisfy the small question, tease the big one.</strong> Cliffhanger ≠ bait.</div>
+
+      <h3>Per-platform routing</h3>
+      <div class="grid">
+        <div class="tile"><div class="t">YouTube</div><div class="big">Short → Long-Form</div><p>Native bridge. Pin the long-form in the Short's comment and add an end screen. Same topic cluster = strongest hand-off.</p></div>
+        <div class="tile"><div class="t">Instagram</div><div class="big">Reel → Full Reel / Link</div><p>Tease in a &lt;60s Reel, resolve in a longer Reel (up to 3 min) or link in bio. DM-share the tease.</p></div>
+        <div class="tile"><div class="t">Facebook</div><div class="big">Reel → Feed video</div><p>Same clip, stripped of any watermark. Private-share is the amplifier — make the tease send-worthy.</p></div>
+      </div>
+    </section>
+
+    <section id="pillars">
+      <h2>Content Pillars</h2>
+      <p class="sub">Three pillars carry the revamp. The first two are the biggest view + positive-sentiment drivers we have.</p>
+
+      <h3>1 · Meet the Trader <span class="pill good">highest views</span></h3>
+      <p>Profile real funded traders. Face, voice, story. This archetype consistently out-pulls pure education on raw views and builds the most positive sentiment — the trader is the protagonist, FundedNext is the system they use.</p>
+      <ul>
+        <li>Hook on the human result, not the brand: "He was rejected by 3 firms. Here's the week everything changed."</li>
+        <li>Show the mechanism — the actual dashboard, the actual payout, the actual rule they respected.</li>
+        <li>Short = the emotional moment (cliffhanger); long-form = the full journey.</li>
+      </ul>
+
+      <h3>2 · Changing Lives <span class="pill good">positive brand</span></h3>
+      <p>Transformation stories — what a payout actually changed. Highest positive-sentiment content in the niche. Keep it factual and specific, never performative.</p>
+      <ul>
+        <li>Concrete before/after. Named amounts (verified). Real footage over stock.</li>
+        <li>Frame rewards correctly: <strong>performance-based rewards</strong> from a simulated/evaluation program — never "live trading profits."</li>
+      </ul>
+
+      <h3>3 · Educational — Challenges & Rules <span class="pill new">cliffhanger format</span></h3>
+      <p>Scale short-form that explains how FundedNext actually works — drawdown, payout guarantee, consistency, the specific challenge models — packaged as cliffhangers into full breakdowns.</p>
+      <ul>
+        <li>Name the specific product: <strong>Bolt</strong>, <strong>Rapid</strong>, <strong>Legacy</strong> (Futures), <strong>Stellar</strong> / <strong>Stellar Instant</strong> (CFD). Never "a FundedNext challenge."</li>
+        <li>Use proof points: 24-hour payout guarantee or $1,000 extra; rules visible before purchase; same process for every trader. <em>Verify live figures before publishing.</em></li>
+        <li>Short: "The one Bolt Challenge rule most people miss." → Full video: the complete rule walk-through.</li>
+      </ul>
+      <div class="callout"><span class="lbl">Why trading content over-performs</span>Real money creates real stakes — the strongest driver of watch time and shares. Lead with the stake, teach the mechanism, let the system speak.</div>
+    </section>
+
+    <section id="hooks">
+      <h2>Hook Toolkit</h2>
+      <p class="sub">The first 1.5–3 seconds decide everything. Five 2026 hook frames, with FN-specific angles.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Frame</th><th>How it works</th><th>FN example</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Delayed Reveal</strong></td><td>Show the result first, explain after.</td><td>"This account hit a $4,200 payout in a week — here's the exact setup."</td></tr>
+            <tr><td><strong>Contradiction</strong></td><td>Challenge a belief; create tension that demands resolution.</td><td>"Stop trying to pass fast. The traders who rush blow the account."</td></tr>
+            <tr><td><strong>Data Hook</strong></td><td>Lead with a surprising number.</td><td>"Most challenge fails happen on one rule. It's not the profit target."</td></tr>
+            <tr><td><strong>Question</strong></td><td>Ask something the viewer can't ignore.</td><td>"Know why your funded account keeps getting blown?"</td></tr>
+            <tr><td><strong>Pattern Interrupt</strong></td><td>Unexpected visual/sound in frame 1 — buys 2–3 seconds.</td><td>Hard cut to the payout screen mid-sentence.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="font-size:13.5px">Lead with the trader's result or tension — <strong>not</strong> the FundedNext name. FN earns its mention in the body, as the system being used.</p>
+    </section>
+
+    <section id="firsthour">
+      <h2>First-Hour Tactics</h2>
+      <p class="sub">The seed window is short and unforgiving. What to do the moment you post.</p>
+      <div class="grid">
+        <div class="tile"><div class="t">All platforms</div><div class="big">Reply fast</div><p>Answer every early comment. On YouTube, replying to 50+ comments in the first 2 hours lifts reach 15–20%.</p></div>
+        <div class="tile"><div class="t">Timing</div><div class="big">Post on-peak</div><p>TikTok & IG are follower-first / velocity-driven — post when your audience is actually online.</p></div>
+        <div class="tile"><div class="t">Shorts / Reels</div><div class="big">Seed the share</div><p>Send it to real people in WhatsApp/Messenger yourself. Cross-platform + private shares are weighted heavily.</p></div>
+        <div class="tile"><div class="t">X</div><div class="big">Start the thread</div><p>Reply to your own post with the link and context. One real reply chain = 150× a like.</p></div>
+      </div>
+    </section>
+
+    <section id="packaging">
+      <h2>Thumbnails & Captions</h2>
+      <p class="sub">Packaging is a ranking surface, not decoration.</p>
+      <h3>Thumbnails (YouTube long-form)</h3>
+      <ul>
+        <li>One authentic emotional face, one focal point, 3–5 word text hook that <strong>does not repeat the title</strong>.</li>
+        <li>Readable at 150px (mobile). High contrast; passes the grayscale test.</li>
+        <li>2026 shift: <strong>authentic beats exaggerated</strong> — AI-looking thumbnails average ~30% lower CTR. Use Test &amp; Compare.</li>
+      </ul>
+      <h3>Captions (every platform)</h3>
+      <ul>
+        <li>Word-by-word animated captions, 3–7 words at a time, in the center-third safe zone. +12–40% watch time.</li>
+        <li>Captions are a <strong>ranking signal</strong> on IG and a search signal on YouTube/TikTok — write keywords in naturally, say them out loud in the first 5–30s.</li>
+      </ul>
+    </section>
+
+    <section id="targets">
+      <h2>Growth Targets — 2026 Revamp</h2>
+      <p class="sub">The IG follower goals this playbook is pointed at. Baselines are as-of brief (Jul 2026) — verify live before reporting progress.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Account</th><th>Baseline</th><th>Target</th><th>Lift</th></tr></thead>
+          <tbody>
+            <tr><td>Main IG (CFD Official)</td><td>267,000</td><td>300,000</td><td class="g">+33K</td></tr>
+            <tr><td>Asia IG</td><td>69,000</td><td>100,000</td><td class="g">+31K</td></tr>
+            <tr><td>Spain IG</td><td>25,000</td><td>40,000</td><td class="g">+15K</td></tr>
+            <tr><td>Futures IG</td><td>36,000</td><td>60,000</td><td class="g">+24K</td></tr>
+            <tr><td>France IG</td><td>6,600</td><td>15,000</td><td class="g">+8.4K</td></tr>
+            <tr><td>Germany IG</td><td>700</td><td>10,000</td><td class="g">+9.3K</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout warn"><span class="lbl">Open item</span>No dedicated <strong>Germany IG handle</strong> exists in the account roster yet — confirm or create it before the Germany revamp starts. Also: YouTube (@FundedNext) targets views + subscribers, not a follower number — measure on Shorts→long-form funnel rate and returning-viewer growth.</div>
+    </section>
+
+    <section id="checklist">
+      <h2>Pre-Publish Checklist</h2>
+      <p class="sub">Run this before anything goes live.</p>
+      <ul class="check">
+        <li>Hook lands in the first 1.5–3 seconds — no intro, no logo, no "hey guys".</li>
+        <li>The Short/Reel satisfies on its own <em>and</em> opens a loop to the full video.</li>
+        <li>Would a real person send this to one friend? If no, rethink it.</li>
+        <li>Original upload — no TikTok/CapCut watermark (kills IG & Facebook reach).</li>
+        <li>Captions on, keyword said out loud in the first 5–30 seconds.</li>
+        <li>Full video (if funneling) delivers the promised payoff in its first 30 seconds.</li>
+        <li>Product named specifically; all figures verified live; rewards framed as performance-based (not live-trading profits).</li>
+        <li>Passes the six brand checks below.</li>
+      </ul>
+    </section>
+
+    <section id="brand">
+      <h2>Brand Guardrails</h2>
+      <p class="sub">FundedNext speaks like an engineer explaining a system — clear, specific, never hype. The trader is the hero; FN is the tool.</p>
+      <h3>Six quality checks</h3>
+      <ol>
+        <li><strong>Ban check</strong> — no banned words (below).</li>
+        <li><strong>Fact-first</strong> — the key fact is in the first sentence.</li>
+        <li><strong>Mechanism</strong> — shows how the system works, not just a claim.</li>
+        <li><strong>Specificity</strong> — real product names, rules, numbers (verified).</li>
+        <li><strong>Hype check</strong> — couldn't have been written by any generic prop firm.</li>
+        <li><strong>Engineer check</strong> — sounds like a competent engineer, not a marketer.</li>
+      </ol>
+      <div class="grid">
+        <div class="tile">
+          <div class="t">Never say</div>
+          <ul class="check ban" style="margin-top:8px">
+            <li>"backed" / "we back you"</li>
+            <li>"excited / thrilled / proud"</li>
+            <li>"family / fam"</li>
+            <li>"revolutionary / best / game-changing"</li>
+            <li>competitor names</li>
+            <li>🔥🚀💰🎉 or exclamation-mark hype</li>
+          </ul>
+        </div>
+        <div class="tile">
+          <div class="t">Instead</div>
+          <ul class="check" style="margin-top:8px">
+            <li>Describe the specific thing the system does</li>
+            <li>State the fact: "$300M+ paid."</li>
+            <li>"Traders" / "our traders"</li>
+            <li>Let the reader judge</li>
+            <li>Describe what FN does — contrast is implicit</li>
+            <li>Calm, declarative, specific</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout warn"><span class="lbl">Accuracy rule</span>FundedNext runs <strong>simulated/evaluation</strong> trading — always "performance-based rewards," never "profits from live trading." Never conflate FundedNext with <strong>FNmarkets</strong> (a separate broker). Verify every product figure against the live site before publishing.</div>
+    </section>
+
+    <footer>
+      FundedNext Content Virality Playbook · V5 · calibrated July 2026 · internal use only.<br>
+      Generated from the <code>platform-content-virality</code> skill — the single source of truth for algorithm models, thresholds, and brand rules. Regenerate on skill update rather than hand-editing.
+    </footer>
+  </main>
+</div>
+
+<script>
+  // Mobile nav
+  const side=document.getElementById('side'),scrim=document.getElementById('scrim'),btn=document.getElementById('menuBtn');
+  function toggle(o){side.classList.toggle('open',o);scrim.classList.toggle('open',o)}
+  btn.addEventListener('click',()=>toggle(!side.classList.contains('open')));
+  scrim.addEventListener('click',()=>toggle(false));
+  side.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggle(false)));
+
+  // Scroll-spy
+  const links=[...document.querySelectorAll('nav.side a')];
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));map.get(e.target.id)?.classList.add('active')}})
+  },{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('main section').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>

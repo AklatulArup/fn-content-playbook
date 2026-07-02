@@ -1,4 +1,4 @@
-# FundedNext Content Virality Playbook (V5)
+# FundedNext Content Distribution Playbook
 
 Internal field manual for FundedNext's Community & Partner Management teams —
 how to grow followers and subscribers and post content the platforms actually push,

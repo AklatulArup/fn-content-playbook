@@ -1,7 +1,8 @@
 # FundedNext Content Virality Playbook (V5)
 
-Internal RM field manual for growing FundedNext's Instagram followers and YouTube
-views/subscribers, built on the live 2026 platform algorithm models.
+Internal field manual for FundedNext's Community & Partner Management teams —
+how to grow followers and subscribers and post content the platforms actually push,
+built on the live 2026 platform algorithm models.
 
 > **Internal use only.** Deploy to a **private** repo / access-controlled host.
 

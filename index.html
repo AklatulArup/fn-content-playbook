@@ -89,6 +89,16 @@
   .pill.good{color:var(--brand);border-color:rgba(0,211,167,.4)}
   .pill.new{color:var(--accent);border-color:rgba(79,156,255,.4)}
 
+  .promo .card{margin:14px 0}
+  .promo h3{margin:0 0 10px}
+  .lbl-row{display:flex;gap:12px;margin:11px 0;align-items:baseline}
+  .lbl-row > div{font-size:14.5px;color:var(--text)}
+  .tag{flex:0 0 132px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:5px 8px;border-radius:7px;border:1px solid var(--line2);text-align:center;color:var(--muted)}
+  .tag.first{color:var(--accent);border-color:rgba(79,156,255,.38)}
+  .tag.wider{color:var(--brand);border-color:rgba(0,211,167,.38)}
+  .tag.kills{color:var(--bad);border-color:rgba(255,107,107,.38)}
+  @media(max-width:560px){.lbl-row{flex-direction:column;gap:5px}.tag{flex:none;align-self:flex-start}}
+
   .steps{counter-reset:s;list-style:none;margin-left:0}
   .steps li{counter-increment:s;position:relative;padding-left:42px;margin:14px 0}
   .steps li::before{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:8px;
@@ -125,6 +135,7 @@
     <h4>Foundations</h4>
     <a href="#overview">Overview</a>
     <a href="#model">The Distribution Model</a>
+    <a href="#promote">How Platforms Promote You</a>
     <a href="#platforms">Platform Cheat Sheet</a>
     <h4>The Plays</h4>
     <a href="#cliffhanger">The Cliffhanger System</a>
@@ -142,7 +153,7 @@
     <div class="hero">
       <div class="kicker">FOR COMPANY INTERNAL USE ONLY</div>
       <h1>FundedNext Content Virality Playbook</h1>
-      <p class="lede">The RM field manual for growing Instagram followers and YouTube views/subscribers — built on the live 2026 algorithm models. Short-form is the discovery engine; the full video is the destination.</p>
+      <p class="lede">The field manual for FundedNext's Community &amp; Partner Management teams — how to grow followers and subscribers, and post content the platforms actually push. Built on the live 2026 algorithm models. Short-form is the discovery engine; the full video is the destination.</p>
       <div class="flags">
         <span class="flag">YouTube · Shorts + Long-Form</span>
         <span class="flag">Instagram Reels</span>
@@ -176,6 +187,57 @@
         <div class="phase"><div class="n">PHASE 4</div><div class="nm">Explosive</div><div class="gate">1 week+</div><p>Self-reinforcing. Shares/loops accelerate as the audience widens.</p></div>
       </div>
       <div class="callout warn"><span class="lbl">Phase gating</span>A video that can't survive the <strong>seed test</strong> can't go viral — full stop. Most "good" content dies in Phase 2: watchable, but not shareable. Engineer the share, not just the watch.</div>
+    </section>
+
+    <section id="promote">
+      <h2>How Each Platform Promotes You</h2>
+      <p class="sub">Every platform decides <em>who sees your post first</em>, <em>what makes it spread</em>, and <em>what quietly buries it</em>. Learn these three levers per platform — most reach is lost to the third one without anyone noticing.</p>
+
+      <div class="promo">
+        <div class="card">
+          <h3>Instagram Reels</h3>
+          <div class="lbl-row"><span class="tag first">Shows it to first</span><div><strong>Non-followers, before your own followers.</strong> Instagram "auditions" every Reel to a small group of strangers matched to the topic — 55% of Reels views come from non-followers. Win the small room and it moves to a bigger one, again and again.</div></div>
+          <div class="lbl-row"><span class="tag wider">Pushes it wider when</span><div>Someone <strong>DMs it to a friend</strong> (sends count 3–5× a like), <strong>saves</strong> it, and watches it through. Match a topic your audience actually picked in "Your Algorithm."</div></div>
+          <div class="lbl-row"><span class="tag kills">Quietly kills reach</span><div><strong>Reposting</strong> someone else's clip or posting with a <strong>TikTok/CapCut watermark</strong> = excluded from recommendations. 10+ reposts in 30 days = recommendation ban. Original content earns <strong>40–60% more</strong> reach.</div></div>
+        </div>
+
+        <div class="card">
+          <h3>Facebook (Reels + Feed)</h3>
+          <div class="lbl-row"><span class="tag first">Shows it to first</span><div><strong>Interest-matched non-followers.</strong> ~50% of the Facebook feed is now recommended content from accounts people don't follow — you're not limited to your page's fans.</div></div>
+          <div class="lbl-row"><span class="tag wider">Pushes it wider when</span><div>People <strong>privately share it</strong> (Messenger/WhatsApp) — that outranks every like — and watch it through (~90% completion can 10× reach). Same-day posts get up to +50% surfacing.</div></div>
+          <div class="lbl-row"><span class="tag kills">Quietly kills reach</span><div><strong>Watermarked or reposted video</strong> — Meta fingerprints every clip and favours the first uploader; recyclers lose recommendation eligibility. Static image/link posts get the least reach.</div></div>
+        </div>
+
+        <div class="card">
+          <h3>TikTok</h3>
+          <div class="lbl-row"><span class="tag first">Shows it to first</span><div><strong>Your followers first</strong> (2026 change), then non-followers if it performs. Only views lasting <strong>5+ seconds</strong> count toward distribution.</div></div>
+          <div class="lbl-row"><span class="tag wider">Pushes it wider when</span><div>Completion is high (<strong>≥70%</strong>), people rewatch/loop, and they <strong>share</strong> it. Say your keywords out loud — TikTok search is now a major surface.</div></div>
+          <div class="lbl-row"><span class="tag kills">Quietly kills reach</span><div><strong>Reposted/duplicate</strong> clips are demoted; <strong>engagement bait</strong> ("comment YES") is penalized; if viewers leave the app after your video, it's flagged a "session killer."</div></div>
+        </div>
+
+        <div class="card">
+          <h3>YouTube Shorts</h3>
+          <div class="lbl-row"><span class="tag first">Shows it to first</span><div><strong>Interest-matched non-subscribers</strong> in the Shorts feed. A tight <strong>30–60 minute test</strong> decides whether it dies or gets pushed.</div></div>
+          <div class="lbl-row"><span class="tag wider">Pushes it wider when</span><div>People <strong>don't swipe away</strong>, watch to the end, loop it, and share it off-platform. Your Shorts audience then feeds your <strong>long-form</strong> recommendations — the funnel that grows subscribers.</div></div>
+          <div class="lbl-row"><span class="tag kills">Quietly kills reach</span><div>A slow or branded <strong>intro</strong> (frame 1 must land) and low novelty — if it just repeats what a thousand others posted, distribution stays flat.</div></div>
+        </div>
+
+        <div class="card">
+          <h3>YouTube Long-Form</h3>
+          <div class="lbl-row"><span class="tag first">Shows it to first</span><div>Your <strong>subscribers</strong>, plus Browse/Suggested to interest-matched viewers. The 2026 Browse feed matches by <strong>micro-niche</strong> — a focused channel gets found, a generalist gets filtered.</div></div>
+          <div class="lbl-row"><span class="tag wider">Pushes it wider when</span><div>The thumbnail + title <strong>earn clicks</strong> (≥4% CTR) <em>and</em> people stay (satisfaction + watch time). Shares and saves count ~5× a like.</div></div>
+          <div class="lbl-row"><span class="tag kills">Quietly kills reach</span><div><strong>Clickbait that makes people bounce</strong> — a high click rate followed by a quick exit is scored worse than no click at all. A weak first 7 seconds sinks retention.</div></div>
+        </div>
+
+        <div class="card">
+          <h3>X</h3>
+          <div class="lbl-row"><span class="tag first">Shows it to first</span><div>Your followers + interest-matched users. The <strong>first ~6 hours</strong> are the entire window.</div></div>
+          <div class="lbl-row"><span class="tag wider">Pushes it wider when</span><div><strong>Replies and conversation.</strong> A reply chain you actually engage in is worth ~<strong>150× a like</strong>. Bookmarks count heavily too.</div></div>
+          <div class="lbl-row"><span class="tag kills">Quietly kills reach</span><div><strong>Links in the main post</strong> cut reach — put them in a reply instead. Rage-bait is discounted by 2026 sentiment scoring even when engagement looks high.</div></div>
+        </div>
+      </div>
+
+      <div class="callout"><span class="lbl">The one rule under all of these</span>Discovery platforms are built to find <strong>new</strong> audiences for good content — which is why <strong>original, send-worthy</strong> posts win and recycled/watermarked ones get buried. Post native to each platform; never cross-post a clip with another app's watermark.</div>
     </section>
 
     <section id="platforms">

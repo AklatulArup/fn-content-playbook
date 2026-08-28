@@ -23,42 +23,45 @@
 
   /* Layout */
   .wrap{display:flex;min-height:100vh}
-  nav.side{width:270px;flex:0 0 270px;background:var(--bg2);border-right:1px solid var(--line);
-    position:sticky;top:0;height:100vh;overflow-y:auto;padding:26px 18px}
+  nav.side{width:250px;flex:0 0 250px;background:var(--bg2);border-right:1px solid var(--line);
+    position:sticky;top:0;height:100vh;overflow-y:auto;padding:26px 16px}
   main{flex:1;min-width:0;padding:44px 40px 120px;max-width:calc(var(--maxw) + 80px);margin:0 auto}
 
   .brandmark{font-weight:700;font-size:15px;letter-spacing:.02em;display:flex;align-items:center;gap:9px;margin-bottom:4px}
   .dot{width:10px;height:10px;border-radius:50%;background:var(--brand);box-shadow:0 0 12px var(--brand)}
   .side .ver{color:var(--dim);font-size:12px;margin-bottom:22px;font-family:var(--mono)}
   .side h4{color:var(--dim);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:20px 0 8px;font-weight:600}
-  .side a{display:block;color:var(--muted);padding:6px 10px;border-radius:8px;font-size:14px;border-left:2px solid transparent}
+  .side a{display:flex;align-items:center;gap:9px;color:var(--muted);padding:7px 10px;border-radius:8px;font-size:14px;border-left:2px solid transparent;cursor:pointer}
   .side a:hover{background:var(--panel);color:var(--text);text-decoration:none}
   .side a.active{color:var(--brand);border-left-color:var(--brand);background:var(--panel)}
 
-  /* Header */
+  /* Header + typography */
   .hero{margin-bottom:14px}
   .kicker{color:var(--brand);font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
-  h1{font-size:40px;line-height:1.12;margin:10px 0 12px;letter-spacing:-.02em;font-weight:750}
+  h1{font-size:38px;line-height:1.12;margin:10px 0 12px;letter-spacing:-.02em;font-weight:750}
   .lede{color:var(--muted);font-size:18px;max-width:640px}
   .flags{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 8px}
   .flag{font-size:12px;font-family:var(--mono);color:var(--dim);border:1px solid var(--line);padding:5px 10px;border-radius:999px}
   .internal{border:1px solid var(--line2);background:linear-gradient(180deg,rgba(255,184,77,.06),transparent);
-    color:var(--warn);border-radius:10px;padding:10px 14px;font-size:13px;margin:20px 0 0;display:inline-block}
+    color:var(--warn);border-radius:10px;padding:10px 14px;font-size:13px;margin:20px 0 0;display:block}
 
-  section{padding-top:52px;margin-top:-8px}
-  section > h2{font-size:26px;letter-spacing:-.01em;margin-bottom:6px;font-weight:700;scroll-margin-top:24px}
-  section > .sub{color:var(--muted);margin-bottom:22px;max-width:680px}
-  h3{font-size:18px;margin:28px 0 10px;font-weight:650}
+  .panel{display:none}
+  .panel.active{display:block;animation:fade .22s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  .panel > h2{font-size:27px;letter-spacing:-.01em;margin-bottom:6px;font-weight:700;display:flex;align-items:center;gap:2px}
+  .panel > .sub{color:var(--muted);margin-bottom:20px;max-width:680px}
+  h3{font-size:18px;margin:26px 0 10px;font-weight:650}
   p{margin:10px 0;color:var(--text)}
   .muted{color:var(--muted)}
   ul,ol{margin:10px 0 10px 22px}
   li{margin:6px 0}
   strong{color:#fff;font-weight:650}
+  em{color:var(--text)}
   code{font-family:var(--mono);font-size:.86em;background:var(--panel2);border:1px solid var(--line);padding:1px 6px;border-radius:6px;color:var(--brand)}
 
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:16px 0}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:16px 0}
-  .tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin:16px 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:16px 0}
+  .tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
   .tile .t{font-family:var(--mono);font-size:12px;color:var(--brand);letter-spacing:.06em;text-transform:uppercase}
   .tile .big{font-size:22px;font-weight:700;margin:6px 0 2px}
   .tile p{font-size:13.5px;color:var(--muted);margin:6px 0 0}
@@ -69,62 +72,88 @@
   .callout .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:4px}
 
   .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:16px 0}
-  table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
   th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
   thead th{background:var(--panel2);color:var(--muted);font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--line2)}
   tbody tr:last-child td{border-bottom:none}
   tbody tr:hover{background:rgba(255,255,255,.015)}
-  td .g{color:var(--brand);font-family:var(--mono);font-size:.9em}
+  td .g,.g{color:var(--brand);font-family:var(--mono);font-size:.9em}
 
-  .phase-row{display:flex;gap:0;margin:18px 0;flex-wrap:wrap}
-  .phase{flex:1;min-width:150px;background:var(--panel);border:1px solid var(--line);padding:16px;position:relative}
+  /* Interactive phases */
+  .phase-row{display:flex;gap:0;margin:16px 0;flex-wrap:wrap}
+  .phase{flex:1;min-width:150px;background:var(--panel);border:1px solid var(--line);padding:16px;position:relative;text-align:left;color:var(--text);font-family:inherit;cursor:pointer}
   .phase:first-child{border-radius:12px 0 0 12px}
   .phase:last-child{border-radius:0 12px 12px 0}
+  .phase:hover{background:var(--panel2)}
+  .phase.sel{box-shadow:inset 0 0 0 1px var(--brand);border-color:var(--brand);z-index:1}
   .phase .n{font-family:var(--mono);color:var(--dim);font-size:11px}
   .phase .nm{font-weight:700;margin:2px 0 6px;font-size:15px}
   .phase .gate{color:var(--brand);font-size:12.5px;font-family:var(--mono)}
-  .phase p{font-size:13px;color:var(--muted);margin-top:8px}
+  #phaseDetail{display:none;margin:0 0 8px}
 
   .pill{display:inline-block;font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:6px;border:1px solid var(--line2);color:var(--muted);margin:2px 4px 2px 0}
   .pill.good{color:var(--brand);border-color:rgba(0,211,167,.4)}
   .pill.new{color:var(--accent);border-color:rgba(79,156,255,.4)}
 
-  .promo .card{margin:14px 0}
-  .promo h3{margin:0 0 10px}
-  .lbl-row{display:flex;gap:12px;margin:11px 0;align-items:baseline}
-  .lbl-row > div{font-size:14.5px;color:var(--text)}
-  .tag{flex:0 0 132px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:5px 8px;border-radius:7px;border:1px solid var(--line2);text-align:center;color:var(--muted)}
+  /* Content-type chips */
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 20px}
+  .chip{font-family:var(--mono);font-size:13px;color:var(--muted);background:var(--panel);border:1px solid var(--line);padding:8px 15px;border-radius:999px;cursor:pointer;transition:color .15s,border-color .15s}
+  .chip.on{color:var(--brand);border-color:rgba(0,211,167,.45);background:var(--panel2)}
+  .chip:hover:not(.on){color:var(--text)}
+
+  /* Lever cards */
+  .lever-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:14px 0}
+  .lever{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .lever > div{font-size:14.5px}
+  .tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:5px 9px;border-radius:7px;border:1px solid var(--line2);color:var(--muted);margin:0 0 10px}
   .tag.first{color:var(--accent);border-color:rgba(79,156,255,.38)}
   .tag.wider{color:var(--brand);border-color:rgba(0,211,167,.38)}
   .tag.kills{color:var(--bad);border-color:rgba(255,107,107,.38)}
-  @media(max-width:560px){.lbl-row{flex-direction:column;gap:5px}.tag{flex:none;align-self:flex-start}}
+
+  /* Numbers strip */
+  .numstrip{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0 6px}
+  .numstrip .tile{flex:1;min-width:230px}
+
+  /* Accordions */
+  .subctl{display:flex;gap:16px;align-items:center;margin:24px 0 8px}
+  .subctl .hd{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  .subctl button{background:transparent;border:0;color:var(--accent);cursor:pointer;font-family:var(--mono);font-size:12px;padding:0}
+  .subctl button:hover{text-decoration:underline}
+  .acc{border:1px solid var(--line);border-radius:12px;margin:9px 0;overflow:hidden;background:var(--panel)}
+  .acc-h{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;text-align:left;background:transparent;border:0;color:var(--text);font-family:inherit;font-size:15.5px;font-weight:650;padding:15px 18px;cursor:pointer}
+  .acc-h:hover{background:var(--panel2)}
+  .acc-h .chev{color:var(--dim);font-family:var(--mono);transition:transform .2s;font-size:13px}
+  .acc.open .acc-h .chev{transform:rotate(90deg);color:var(--brand)}
+  .acc-b{padding:2px 18px 16px;display:none}
+  .acc-b p:first-child{margin-top:4px}
+  .acc.open .acc-b{display:block}
+  .pdot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:0 0 auto}
+
+  /* Live-now / Before toggle */
+  .toggle{display:inline-flex;gap:2px;background:var(--panel2);border:1px solid var(--line2);border-radius:9px;padding:3px;margin:0 0 12px;font-family:var(--mono)}
+  .toggle button{background:transparent;border:0;color:var(--muted);font-family:var(--mono);font-size:12px;letter-spacing:.03em;padding:6px 12px;border-radius:6px;cursor:pointer}
+  .toggle button.on{background:var(--panel);color:var(--brand);box-shadow:inset 0 0 0 1px var(--line2)}
+  .toggle button:hover:not(.on){color:var(--text)}
+  .tg-pane[hidden]{display:none}
+  .tg-pane{font-size:14.5px}
 
   .steps{counter-reset:s;list-style:none;margin-left:0}
   .steps li{counter-increment:s;position:relative;padding-left:42px;margin:14px 0}
   .steps li::before{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:8px;
     background:var(--panel2);border:1px solid var(--line2);color:var(--brand);font-family:var(--mono);font-size:13px;
     display:flex;align-items:center;justify-content:center;font-weight:600}
-
   .check{list-style:none;margin-left:0}
   .check li{padding-left:28px;position:relative;margin:8px 0}
   .check li::before{content:"✓";position:absolute;left:0;color:var(--brand);font-weight:700}
-  .ban li::before{content:"✕";color:var(--bad)}
 
-  /* Live-now / Before toggle */
-  .toggle{display:inline-flex;gap:2px;background:var(--panel2);border:1px solid var(--line2);border-radius:9px;padding:3px;margin:2px 0 12px;font-family:var(--mono)}
-  .toggle button{background:transparent;border:0;color:var(--muted);font-family:var(--mono);font-size:12px;letter-spacing:.03em;padding:6px 12px;border-radius:6px;cursor:pointer}
-  .toggle button.on{background:var(--panel);color:var(--brand);box-shadow:inset 0 0 0 1px var(--line2)}
-  .toggle button:hover:not(.on){color:var(--text)}
-  .tg-pane[hidden]{display:none}
-
-  footer{color:var(--dim);font-size:13px;border-top:1px solid var(--line);margin-top:60px;padding-top:20px}
+  footer{color:var(--dim);font-size:13px;border-top:1px solid var(--line);margin-top:48px;padding-top:20px}
 
   .menu-btn{display:none}
   @media(max-width:880px){
     nav.side{position:fixed;left:0;top:0;transform:translateX(-100%);transition:transform .22s ease;z-index:40;box-shadow:0 0 40px rgba(0,0,0,.5)}
     nav.side.open{transform:translateX(0)}
     main{padding:70px 20px 100px}
-    h1{font-size:30px}
+    h1{font-size:29px}
     .menu-btn{display:flex;position:fixed;top:14px;left:14px;z-index:50;background:var(--panel);border:1px solid var(--line2);
       color:var(--text);border-radius:10px;width:42px;height:42px;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
     .scrim{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:35}
@@ -138,334 +167,117 @@
 <div class="wrap">
   <nav class="side" id="side">
     <div class="brandmark"><span class="dot"></span>FundedNext</div>
-    <div class="ver">Content Distribution Playbook · Aug 2026 update</div>
-    <h4>Foundations</h4>
-    <a href="#overview">Overview</a>
-    <a href="#model">The Distribution Model</a>
-    <a href="#promote">How Platforms Promote You</a>
-    <a href="#originality">Staying Original</a>
-    <a href="#platforms">Platform Cheat Sheet</a>
+    <div class="ver">Content Playbook · Aug 2026</div>
+
+    <h4>Start</h4>
+    <a data-panel="overview" class="active">Overview</a>
+
+    <h4>Platforms</h4>
+    <a data-panel="youtube"><span class="pdot" style="background:#ff6b6b"></span>YouTube</a>
+    <a data-panel="instagram"><span class="pdot" style="background:#e879f9"></span>Instagram</a>
+    <a data-panel="facebook"><span class="pdot" style="background:#4f9cff"></span>Facebook</a>
+    <a data-panel="tiktok"><span class="pdot" style="background:#00d3a7"></span>TikTok</a>
+    <a data-panel="x"><span class="pdot" style="background:#c9d3e0"></span>X</a>
+
     <h4>The Plays</h4>
-    <a href="#cliffhanger">The Cliffhanger System</a>
-    <a href="#pillars">Content Pillars</a>
-    <a href="#hooks">Hook Toolkit</a>
-    <a href="#firsthour">First-Hour Tactics</a>
-    <a href="#packaging">Thumbnails & Captions</a>
-    <a href="#bios">Bios & Search</a>
+    <a data-panel="cliffhangers">Cliffhangers</a>
+    <a data-panel="hooks">Hook Toolkit</a>
+    <a data-panel="pillars">Content Pillars</a>
+    <a data-panel="bios">Bios &amp; Search</a>
+
+    <h4>Protect</h4>
+    <a data-panel="originality">Staying Original</a>
   </nav>
 
-  <main>
-    <div class="hero">
-      <div class="kicker">FOR COMPANY INTERNAL USE ONLY</div>
-      <h1>FundedNext Content Distribution Playbook</h1>
-      <p class="lede">The field manual for FundedNext's Community &amp; Partner Management teams — how to grow followers and subscribers, and post content the platforms actually push. Built on the live 2026 algorithm models. Short-form is the discovery engine; the full video is the destination.</p>
-      <div class="flags">
-        <span class="flag">YouTube · Shorts + Long-Form</span>
-        <span class="flag">Instagram Reels</span>
-        <span class="flag">Facebook</span>
-        <span class="flag">TikTok</span>
-        <span class="flag">X</span>
+  <main id="main">
+    <!-- OVERVIEW -->
+    <section class="panel active" id="panel-overview">
+      <div class="hero">
+        <div class="kicker">FOR COMPANY INTERNAL USE ONLY</div>
+        <h1>Content Distribution Playbook</h1>
+        <p class="lede">The field manual for FundedNext's Community &amp; Partner Management teams — how to grow followers and subscribers, and post content the platforms actually push. Short-form is the discovery engine; the full video is the destination.</p>
+        <div class="flags">
+          <span class="flag">YouTube</span><span class="flag">Instagram</span><span class="flag">Facebook</span><span class="flag">TikTok</span><span class="flag">X</span>
+        </div>
+        <div class="internal">Interactive edition. Pick a platform in the left rail, switch content types with the chips, flip <strong>Before / Live now</strong> toggles, and expand the details you need. Derived from the <code>platform-content-virality</code> skill (single source of truth, calibrated Jul 2026; platform-news refresh Aug 2026).</div>
       </div>
-      <div class="internal">Internal document. Derived from the <code>platform-content-virality</code> skill (single source of truth, calibrated July 2026; platform-news refresh Aug 2026). When the skill updates, regenerate this page — don't hand-edit numbers.</div>
-    </div>
 
-    <section id="overview">
-      <h2>Overview</h2>
-      <p class="sub">What this playbook is for, and the one idea that runs through all of it.</p>
-      <p>Every platform in 2026 runs an <strong>interest-based discovery feed</strong>, not a follower feed. Reach is earned per-post by surviving a sequence of algorithmic gates — not granted by your follower count. That means a small account can reach far beyond its size, and a big account gets no free pass.</p>
-      <p>Our growth goals — more IG followers, more YouTube views and subscribers — come from one repeatable motion:</p>
-      <div class="grid">
-        <div class="tile"><div class="t">Discovery</div><div class="big">Short-form</div><p>Shorts, Reels, TikToks win new non-followers. This is top-of-funnel.</p></div>
-        <div class="tile"><div class="t">Depth</div><div class="big">Long-form</div><p>The full video converts a viewer into a subscriber and a believer.</p></div>
-        <div class="tile"><div class="t">The bridge</div><div class="big">Cliffhangers</div><p>Short-form ends on tension that only the full video resolves. Channels running both grow <strong>41% faster</strong>.</p></div>
-      </div>
       <div class="callout"><span class="lbl">The prime directive</span>Fix the <strong>psychology</strong> first — attention, emotion, the urge to send it to one friend. The algorithm signals are just the measurement. Content people genuinely want to watch and share is what the gates are built to detect.</div>
-    </section>
 
-    <section id="model">
-      <h2>The Distribution Model</h2>
-      <p class="sub">Every post moves through the same four phases — but the audience it seeds to, the gate it must clear, and the clock it runs on all change with the <strong>platform</strong> and the <strong>content type</strong>. Fail a phase's gate and distribution stops; a strong later signal can't rescue a failed earlier one.</p>
-      <div class="phase-row">
-        <div class="phase"><div class="n">PHASE 1</div><div class="nm">Seed</div><div class="gate">0–60 min</div><p>Tiny interest-matched test cohort. Gate = the hook (hold rate / swipe rate / CTR).</p></div>
-        <div class="phase"><div class="n">PHASE 2</div><div class="nm">Resonance</div><div class="gate">1–48 hrs</div><p>Larger cohort. Gate = shares + watch time. "Would someone send this?"</p></div>
-        <div class="phase"><div class="n">PHASE 3</div><div class="nm">Expansion</div><div class="gate">1–7 days</div><p>Broad strangers. Gate = signals hold outside your niche.</p></div>
-        <div class="phase"><div class="n">PHASE 4</div><div class="nm">Explosive</div><div class="gate">1 week+</div><p>Self-reinforcing. Shares/loops accelerate as the audience widens.</p></div>
+      <h3>One motion, three moves</h3>
+      <div class="grid">
+        <div class="tile"><div class="t">Discovery</div><div class="big">Short-form</div><p>Shorts, Reels, TikToks win new non-followers. Top-of-funnel.</p></div>
+        <div class="tile"><div class="t">Depth</div><div class="big">Long-form</div><p>The full video converts a viewer into a subscriber and a believer.</p></div>
+        <div class="tile"><div class="t">The bridge</div><div class="big">Cliffhangers</div><p>Short-form ends on tension only the full video resolves. Cross-format channels grow <strong>41% faster</strong>.</p></div>
       </div>
 
-      <h3>Same phases, different clock — by platform &amp; content type</h3>
-      <p class="muted" style="font-size:14.5px;max-width:680px">Short-form is <strong>discovery-first</strong> — it seeds to strangers and decays fast. Long-form is <strong>evergreen</strong> — it seeds to your own audience first and compounds in search. The same clip posted as a Short vs a long-form video is treated as two different content types.</p>
-      <div class="tablewrap">
-        <table>
-          <thead><tr><th>Platform</th><th>Content type</th><th>Seeds to first</th><th>Gate to clear</th><th>Peak window</th><th>Lifespan &amp; shape</th></tr></thead>
-          <tbody>
-            <tr>
-              <td><strong>YouTube</strong></td><td>Long-form</td>
-              <td>Subscribers + Browse/Suggested</td>
-              <td class="g">CTR ≥4% + strong first 30s</td>
-              <td>48h – 1 week</td>
-              <td><strong>Evergreen</strong> — compounds in Search for months/years</td>
-            </tr>
-            <tr>
-              <td><strong>YouTube</strong></td><td>Shorts</td>
-              <td>Interest-matched non-subscribers</td>
-              <td class="g">Don't-swipe + completion ≥70%</td>
-              <td>first 30–60 min</td>
-              <td>Extended weeks; <strong>funnels viewers to long-form</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Instagram</strong></td><td>Reels</td>
-              <td>Non-followers first (audition)</td>
-              <td class="g">3-sec hold ≥60%</td>
-              <td>1 – 24h</td>
-              <td>~35 days; <strong>DM-share flywheel</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Instagram</strong></td><td>Carousel / Feed</td>
-              <td>Followers + Explore</td>
-              <td class="g">Dwell time + saves</td>
-              <td>first hours</td>
-              <td>Save-extended tail; unfinished carousels get re-shown</td>
-            </tr>
-            <tr>
-              <td><strong>Facebook</strong></td><td>Reels + Feed</td>
-              <td>Interest-matched non-followers (~50% of feed)</td>
-              <td class="g">Watch-through (~90% ⇒ 10× reach)</td>
-              <td>1 – 24h</td>
-              <td>~35 days; <strong>private-share + cross-app</strong> (FB/IG/Messenger/WhatsApp)</td>
-            </tr>
-            <tr>
-              <td><strong>TikTok</strong></td><td>Short video</td>
-              <td>Your followers first, then FYP</td>
-              <td class="g">Completion ≥70% (5s+ counts)</td>
-              <td>first 60 min</td>
-              <td>~30 days; fast early decay, loop-compounding</td>
-            </tr>
-            <tr>
-              <td><strong>X</strong></td><td>Post / thread</td>
-              <td>Followers + interest-matched</td>
-              <td class="g">Replies in the first ~6 hours</td>
-              <td>first ~6h</td>
-              <td>~3 days; reply-driven, then dead</td>
-            </tr>
-          </tbody>
-        </table>
+      <h3>The distribution model — click a phase</h3>
+      <p class="muted" style="font-size:14.5px;max-width:680px">Every post moves through the same four phases. Fail a phase's gate and distribution stops — a strong later signal can't rescue a failed earlier one.</p>
+      <div class="phase-row clickable">
+        <button class="phase" data-phase="1"><div class="n">PHASE 1</div><div class="nm">Seed</div><div class="gate">0–60 min</div></button>
+        <button class="phase" data-phase="2"><div class="n">PHASE 2</div><div class="nm">Resonance</div><div class="gate">1–48 hrs</div></button>
+        <button class="phase" data-phase="3"><div class="n">PHASE 3</div><div class="nm">Expansion</div><div class="gate">1–7 days</div></button>
+        <button class="phase" data-phase="4"><div class="n">PHASE 4</div><div class="nm">Explosive</div><div class="gate">1 week+</div></button>
+      </div>
+      <div class="callout" id="phaseDetail"></div>
+
+      <div class="subctl"><span class="hd">Compare everything</span><button data-exp="open">Expand</button><button data-exp="close">Collapse</button></div>
+      <div class="acc">
+        <button class="acc-h">All platforms &amp; content types, side by side <span class="chev">▸</span></button>
+        <div class="acc-b">
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>Platform</th><th>Type</th><th>Seeds to first</th><th>Gate</th><th>Peak</th><th>Lifespan</th></tr></thead>
+              <tbody>
+                <tr><td><strong>YouTube</strong></td><td>Long-form</td><td>Subs + Browse/Suggested</td><td class="g">CTR ≥4% + first 30s</td><td>48h–1wk</td><td>Evergreen (Search)</td></tr>
+                <tr><td><strong>YouTube</strong></td><td>Shorts</td><td>Interest-matched non-subs</td><td class="g">Don't-swipe + ≥70%</td><td>30–60 min</td><td>Funnels to long-form</td></tr>
+                <tr><td><strong>Instagram</strong></td><td>Reels</td><td>Non-followers (audition)</td><td class="g">3-sec hold ≥60%</td><td>1–24h</td><td>~35d; DM-share</td></tr>
+                <tr><td><strong>Instagram</strong></td><td>Carousel</td><td>Followers + Explore</td><td class="g">Dwell + saves</td><td>first hours</td><td>Save-extended</td></tr>
+                <tr><td><strong>Facebook</strong></td><td>Reels+Feed</td><td>Non-followers (~50%)</td><td class="g">~90% ⇒ 10× reach</td><td>1–24h</td><td>~35d; cross-app</td></tr>
+                <tr><td><strong>TikTok</strong></td><td>Short</td><td>Followers → FYP</td><td class="g">Completion ≥70%</td><td>first 60 min</td><td>~30d; loops</td></tr>
+                <tr><td><strong>X</strong></td><td>Post/thread</td><td>Followers + interest</td><td class="g">Replies in ~6h</td><td>first ~6h</td><td>~3d; reply-driven</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <div class="callout warn"><span class="lbl">Phase gating</span>A video that can't survive the <strong>seed test</strong> can't go viral — full stop. Most "good" content dies in Phase 2: watchable, but not shareable. Engineer the share, not just the watch.</div>
     </section>
 
-    <section id="promote">
-      <h2>How Each Platform Promotes You</h2>
-      <p class="sub">Every platform decides <em>who sees your post first</em>, <em>what makes it spread</em>, and <em>what quietly buries it</em>. Learn these three levers per platform — most reach is lost to the third one without anyone noticing.</p>
+    <!-- PLATFORM PANELS (filled by JS) -->
+    <section class="panel" id="panel-youtube"></section>
+    <section class="panel" id="panel-instagram"></section>
+    <section class="panel" id="panel-facebook"></section>
+    <section class="panel" id="panel-tiktok"></section>
+    <section class="panel" id="panel-x"></section>
 
-      <div class="promo">
-        <div class="card">
-          <h3>Instagram Reels</h3>
-          <div class="lbl-row"><span class="tag first">Shows it to first</span><div><strong>Non-followers, before your own followers.</strong> Instagram "auditions" every Reel to a small group of strangers matched to the topic — 55% of Reels views come from non-followers. Win the small room and it moves to a bigger one, again and again.</div></div>
-          <div class="lbl-row"><span class="tag wider">Pushes it wider when</span><div>Someone <strong>DMs it to a friend</strong> (sends count 3–5× a like), <strong>saves</strong> it, and watches it through. Match a topic your audience actually picked in "Your Algorithm."</div></div>
-          <div class="lbl-row"><span class="tag kills">Quietly kills reach</span><div><strong>Reposting</strong> someone else's clip or posting with a <strong>TikTok/CapCut watermark</strong> = excluded from recommendations. 10+ reposts in 30 days = recommendation ban. Original content earns <strong>40–60% more</strong> reach.</div></div>
-        </div>
-
-        <div class="card">
-          <h3>Facebook (Reels + Feed)</h3>
-          <div class="lbl-row"><span class="tag first">Shows it to first</span><div><strong>Interest-matched non-followers.</strong> ~50% of the Facebook feed is now recommended content from accounts people don't follow — you're not limited to your page's fans.</div></div>
-          <div class="lbl-row"><span class="tag wider">Pushes it wider when</span><div>People <strong>privately share it</strong> (Messenger/WhatsApp) — that outranks every like — and watch it through (~90% completion can 10× reach). Same-day posts get up to +50% surfacing.</div></div>
-          <div class="lbl-row"><span class="tag kills">Quietly kills reach</span><div><strong>Watermarked or reposted video</strong> — Meta fingerprints every clip and favours the first uploader; recyclers lose recommendation eligibility. Static image/link posts get the least reach.</div></div>
-        </div>
-
-        <div class="card">
-          <h3>TikTok</h3>
-          <div class="lbl-row"><span class="tag first">Shows it to first</span><div><strong>Your followers first</strong> (2026 change), then non-followers if it performs. Only views lasting <strong>5+ seconds</strong> count toward distribution.</div></div>
-          <div class="lbl-row"><span class="tag wider">Pushes it wider when</span><div>Completion is high (<strong>≥70%</strong>), people rewatch/loop, and they <strong>share</strong> it. Say your keywords out loud — TikTok search is now a major surface.</div></div>
-          <div class="lbl-row"><span class="tag kills">Quietly kills reach</span><div><strong>Reposted/duplicate</strong> clips are demoted; <strong>engagement bait</strong> ("comment YES") is penalized; if viewers leave the app after your video, it's flagged a "session killer."</div></div>
-        </div>
-
-        <div class="card">
-          <h3>YouTube Shorts</h3>
-          <div class="lbl-row"><span class="tag first">Shows it to first</span><div><strong>Interest-matched non-subscribers</strong> in the Shorts feed. A tight <strong>30–60 minute test</strong> decides whether it dies or gets pushed.</div></div>
-          <div class="lbl-row"><span class="tag wider">Pushes it wider when</span><div>People <strong>don't swipe away</strong>, watch to the end, loop it, and share it off-platform. Your Shorts audience then feeds your <strong>long-form</strong> recommendations — the funnel that grows subscribers.</div></div>
-          <div class="lbl-row"><span class="tag kills">Quietly kills reach</span><div>A slow or branded <strong>intro</strong> (frame 1 must land) and low novelty — if it just repeats what a thousand others posted, distribution stays flat.</div></div>
-        </div>
-
-        <div class="card">
-          <h3>YouTube Long-Form</h3>
-          <div class="lbl-row"><span class="tag first">Shows it to first</span><div>Your <strong>subscribers</strong>, plus Browse/Suggested to interest-matched viewers. The 2026 Browse feed matches by <strong>micro-niche</strong> — a focused channel gets found, a generalist gets filtered.</div></div>
-          <div class="lbl-row"><span class="tag wider">Pushes it wider when</span><div>The thumbnail + title <strong>earn clicks</strong> (≥4% CTR) <em>and</em> people stay (satisfaction + watch time). Shares and saves count ~5× a like.</div></div>
-          <div class="lbl-row"><span class="tag kills">Quietly kills reach</span><div><strong>Clickbait that makes people bounce</strong> — a high click rate followed by a quick exit is scored worse than no click at all. A weak first 7 seconds sinks retention.</div></div>
-        </div>
-
-        <div class="card">
-          <h3>X</h3>
-          <div class="lbl-row"><span class="tag first">Shows it to first</span><div>Your followers + interest-matched users. The <strong>first ~6 hours</strong> are the entire window.</div></div>
-          <div class="lbl-row"><span class="tag wider">Pushes it wider when</span><div><strong>Replies and conversation.</strong> A reply chain you actually engage in is worth ~<strong>150× a like</strong>. Bookmarks count heavily too.</div></div>
-          <div class="lbl-row"><span class="tag kills">Quietly kills reach</span><div><strong>Links in the main post</strong> cut reach — put them in a reply instead. Rage-bait is discounted by 2026 sentiment scoring even when engagement looks high.</div></div>
-        </div>
-      </div>
-
-      <div class="callout"><span class="lbl">The one rule under all of these</span>Discovery platforms are built to find <strong>new</strong> audiences for good content — which is why <strong>original, send-worthy</strong> posts win and recycled/watermarked ones get buried. Post native to each platform; never cross-post a clip with another app's watermark.</div>
-    </section>
-
-    <section id="originality">
-      <h2>Staying Original — How Detection Works</h2>
-      <p class="sub">Discovery platforms reward original uploads and bury copies. They don't compare raw pixels — they build a small fuzzy <strong>fingerprint</strong> of a clip's visuals and audio and check whether a match already exists. If it does, <em>your</em> upload is scored as the copy and demoted. Three layers stack up, roughly the same across platforms.</p>
-
-      <div class="phase-row">
-        <div class="phase"><div class="n">LAYER 1</div><div class="nm">Perceptual hash</div><div class="gate">visual</div><p>Each frame → grayscale, resized to 32×32, DCT, keep the top-left 8×8 low-frequency coefficients, binarize against the median → a 64-bit fingerprint. Compared by Hamming distance: near-duplicates sit a few bits apart, unrelated clips ~32. Robust to mild recompression, resizing and small overlays; sensitive to flips, big crops and colour shifts.</p></div>
-        <div class="phase"><div class="n">LAYER 2</div><div class="nm">Audio fingerprint</div><div class="gate">sound</div><p>A separate system on the waveform: sample the spectrogram, find the loud peaks, hash their pattern (the Shazam method). Matches by bit-error-rate, threshold ≈0.30. Runs independent of the picture — lifting someone's exact audio flags you even if the visuals differ.</p></div>
-        <div class="phase"><div class="n">LAYER 3</div><div class="nm">Learned + watermark</div><div class="gate">neural</div><p>A neural model catches what simple hashing misses — flips, large crops, colour shifts and inserted watermarks — plus a dedicated detector for TikTok/CapCut logos.</p></div>
-      </div>
-      <p class="muted" style="font-size:14.5px;max-width:680px">This is why a filter, a small crop or a caption bar does <strong>not</strong> make a repost "original" — none of them change the low-frequency structure the hash actually reads.</p>
-
-      <h3>What Instagram does <span class="pill new">2026</span></h3>
-      <p>Visual fingerprinting flags content at roughly <strong>70%+ similarity</strong> <span class="muted">(approx)</span> as a repost and demotes it. It detects slightly edited versions, watermarked clips and re-uploads. On a confident match it recommends the original — and can <strong>replace the repost with the original creator's version</strong>. Aggregator penalty: 10+ reposts in 30 days removes the account from recommendations (now covers photos and carousels). <strong>Content Protection</strong> (launched Nov 2025) scans for matches to your own uploads and alerts you in the Professional Dashboard. Original content earns <strong>40–60% more</strong> distribution.</p>
-
-      <div class="tablewrap">
-        <table>
-          <thead><tr><th>Platform</th><th>What it does about copies</th></tr></thead>
-          <tbody>
-            <tr><td><strong>YouTube</strong></td><td>Content ID fingerprints audio &amp; video against a reference database; a separate "reused / repetitious content" policy gates monetization for low-transformation re-uploads; watermarked Shorts are demoted.</td></tr>
-            <tr><td><strong>TikTok</strong></td><td>Audio and visual fingerprinting with sophisticated duplicate detection — resurfaces the older matching video, and buries re-uploads and watermarked files.</td></tr>
-            <tr><td><strong>Instagram / Facebook</strong></td><td>Meta fingerprints every clip, favours the first uploader, and excludes watermarked / reposted video from recommendations.</td></tr>
-            <tr><td><strong>X</strong></td><td>No Meta-style originality demotion — its levers are topical relevance (SimClusters) and Community Notes, not fingerprint matching.</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Make content register as original</h3>
-      <ol class="steps">
-        <li><strong>Export one clean master; upload a separate clean file to each platform.</strong> Never download a published video from one app and re-upload it to another — both the audio fingerprint and any watermark will match.</li>
-        <li><strong>No platform watermarks, ever.</strong> The learned-embedding pass catches them even when cropped.</li>
-        <li><strong>Reset the fingerprint where it counts, not cosmetically.</strong> Filters, small crops and speed tweaks don't change the structure the hash reads. Your own footage, screen recordings, voiceover and your own (or substantially rebuilt) audio do. For FundedNext this is easy — dashboards, payout screens, charts and a creator's own face and voice are inherently un-fingerprinted raw material.</li>
-        <li><strong>If you must use an existing clip, transform it well past the threshold</strong> with real commentary, reaction or added analysis. A bare repost with a caption is not enough.</li>
-        <li><strong>Post natively; keep metadata clean.</strong></li>
-        <li><strong>Manage the account, not just the post</strong> — keep a high original-to-repost ratio, stay under the aggregator thresholds, and stay in one topic cluster.</li>
-      </ol>
-
-      <div class="callout warn"><span class="lbl">Replication: format, not file</span>When we scale a winning video across creators or accounts, replicate the <strong>format — not the file</strong>. Same hook, same structure, same beat-for-beat script, <strong>filmed fresh by each creator</strong> so every upload carries its own original fingerprint. Posting one identical file across many accounts is exactly what 2026 fingerprinting flags as unoriginal — the extra copies get demoted or replaced by whoever posted first. This keeps the replication engine and makes it originality-safe.</div>
-    </section>
-
-    <section id="platforms">
-      <h2>Platform Cheat Sheet</h2>
-      <p class="sub">The 2026 gate metric and top signals per platform. These are the numbers to coach creators against.</p>
-      <div class="tablewrap">
-        <table>
-          <thead><tr><th>Platform</th><th>Phase-1 gate</th><th>Top signals (2026)</th><th>What to know</th></tr></thead>
-          <tbody>
-            <tr>
-              <td><strong>YouTube<br>Long-Form</strong></td>
-              <td><span class="g">CTR ≥4%</span> in 48h · <span class="g">30s retention ≥70%</span></td>
-              <td>Satisfaction ~35% · AVD ~35% · CTR ~20% · Session ~10%. Shares & saves ≈5× likes.</td>
-              <td>Establish value in <strong>7 seconds</strong>. "Quality CTR": clicking then bouncing is worse than not clicking. Feb-2026 Browse matches by <strong>micro-niche</strong> — own one lane. Evergreen via Search.</td>
-            </tr>
-            <tr>
-              <td><strong>YouTube<br>Shorts</strong></td>
-              <td><span class="g">Viewed-vs-Swiped ≥50%</span> · <span class="g">Completion ≥70%</span></td>
-              <td>Loop/rewatch ≥15–20% · cross-platform shares (WhatsApp/iMessage/X).</td>
-              <td>Frame 1 <em>is</em> the content — no intros. Priority test now <strong>30–60 min</strong>. Retention bands ≈<strong>65%</strong> (&lt;30s) · <strong>50%</strong> (30–60s) <span class="muted">(approx)</span>; under 40% is deprioritized regardless of CTR. Ranks in Search separately from long-form. The funnel to long-form is the whole point.</td>
-            </tr>
-            <tr>
-              <td><strong>Instagram<br>Reels</strong></td>
-              <td><span class="g">3-sec hold ≥60%</span></td>
-              <td>Watch time (#1) · <strong>DM sends 3–5× likes</strong> (#1 for non-followers) · saves 3× · completion ≥50% for Explore.</td>
-              <td>Tested on <strong>non-followers first</strong>. Watermarked/reposted = excluded. <strong>Four separate ranking systems</strong> (Feed / Reels / Stories / Explore). "Your Algorithm" (now on Feed too) = match declared topics. Use Trial Reels; <strong>AI translations</strong> are now a named reach tactic. Raw &gt; polished.</td>
-            </tr>
-            <tr>
-              <td><strong>Facebook</strong><br><span class="muted">Reels + Feed</span></td>
-              <td><span class="g">Watch-through</span> · ~90% completion can 10× reach</td>
-              <td><strong>Private shares</strong> (Messenger/WhatsApp) outrank likes · UTIS interest survey · saves.</td>
-              <td><span class="pill new">NEW</span> ~50% of feeds are now strangers. Original uploads only (video is fingerprinted). One clip → 4 Meta surfaces (~3B ceiling) via the cross-app graph.</td>
-            </tr>
-            <tr>
-              <td><strong>TikTok</strong></td>
-              <td><span class="g">Completion ≥70%</span> · "qualified views" = 5s+</td>
-              <td>Watch time ~40–50% · shares 3× likes · rewatch · saves. Comments (quality, not count).</td>
-              <td><strong>Follower-first</strong> in 2026 — post when followers are online. Engagement bait is penalized. US ops are now <strong>TikTok USDS JV</strong> (Oracle / Silver Lake / MGX; ByteDance 19.9%, closed Jan 22 2026) and Oracle is retraining the US algorithm — <strong>re-baseline US benchmarks, expect reach variance through 2026</strong>. Longer videos (1–3 min+) get more distribution when they hold completion.</td>
-            </tr>
-            <tr>
-              <td><strong>X</strong></td>
-              <td>First 6 hours = the whole window</td>
-              <td>Reply-with-author-reply = <strong>150× a like</strong> · reply 27× · bookmark 10× · repost 2×.</td>
-              <td>Reply bait &gt; like bait. Links in the main post cut reach (−50–90%) — put them in replies. Constructive framing (2026 sentiment scoring discounts rage-bait). Algorithm <strong>open-sourced Jan 2026</strong> (Phoenix, a Grok transformer — <code>github.com/xai-org/x-algorithm</code>); the Aug-2026 "Under the Hood" page shows your own visibility labels. Free reach ≈0 since Mar 2025, so <strong>Premium is effectively required</strong>; text out-performs video; a per-creator diversity cap means posting more <em>dilutes</em> reach (~145k SimClusters). Post 2–3×/day.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>How YouTube counts a "view" now</h3>
-      <div class="tgroup card">
-        <div class="toggle" role="tablist">
-          <button class="on" data-state="live">Live now (2026)</button>
-          <button data-state="before">Before</button>
-        </div>
-        <div class="tg-pane" data-state="live">
-          <p>A view now registers <strong>the instant playback starts</strong> — no minimum watch time — across long-form, Shorts and live. Shorts moved to this in Mar 2025; it extended to <strong>all formats on Aug 24, 2026</strong>. Public view counts climb faster and are effectively a <strong>vanity number</strong>. The old watch-based metric survives, renamed <strong>"engaged views,"</strong> and <em>that</em> is the number that governs monetization and Partner Program eligibility (10M engaged Shorts views in 90 days — not total views).</p>
-          <div class="callout"><span class="lbl">RM takeaway</span>Report <strong>engaged views</strong> to partners, not the headline count. And note the algorithms are now formally split — a weak Short no longer drags down long-form.</div>
-        </div>
-        <div class="tg-pane" data-state="before" hidden>
-          <p>A view required <strong>meaningful watch time</strong> to register, so the public count roughly tracked real watching — and was the number partners and RMs reported. Under the old model the headline view figure and the "did people actually watch" signal were effectively the same number.</p>
-        </div>
-      </div>
-
-      <p class="muted" style="font-size:13.5px">Weights are priors from platform research, not FN-calibrated production values. Treat as directional until the engine's calibration loop runs on our own data.</p>
-    </section>
-
-    <section id="cliffhanger">
+    <!-- CLIFFHANGERS -->
+    <section class="panel" id="panel-cliffhangers">
       <h2>The Cliffhanger System</h2>
       <p class="sub">How we turn short-form reach into full-video views and subscribers — without tanking the Short's own completion gate.</p>
-      <p>A cliffhanger Short/Reel opens with a <strong>result or tension</strong>, delivers a self-contained micro-payoff, then points to the full video for the deeper resolution. The algorithm rewards this: YouTube explicitly connects your Shorts audience to your long-form, and cross-format channels grow <strong>41% faster</strong>.</p>
+      <p>A cliffhanger Short/Reel opens with a <strong>result or tension</strong>, delivers a self-contained micro-payoff, then points to the full video for the deeper resolution. YouTube explicitly connects your Shorts audience to your long-form, and cross-format channels grow <strong>41% faster</strong>.</p>
 
-      <h3>The structure</h3>
-      <ol class="steps">
-        <li><strong>Open on the payoff or the stakes</strong> (0–2s). "This trader turned a $15K challenge into a $4,200 payout — in one week." No intro, no logo.</li>
-        <li><strong>Deliver one real micro-insight</strong> (the Short must satisfy on its own). Give them <em>something</em> complete, or completion collapses and it never funnels.</li>
-        <li><strong>Cut on the open loop</strong> (last 3s). "The exact rule that would've blown the account is in the full breakdown." Point to the full video — pinned comment, end card, "link/▶ full video."</li>
-        <li><strong>Make the full video deliver</strong> the promised resolution in the first 30 seconds — or the cross-over audience bounces and YouTube reads a broken promise.</li>
-      </ol>
+      <div class="subctl"><span class="hd">The structure</span><button data-exp="open">Expand</button><button data-exp="close">Collapse</button></div>
+      <div class="acc"><button class="acc-h">1 · Open on the payoff or the stakes (0–2s) <span class="chev">▸</span></button><div class="acc-b"><p>"This trader turned a $15K challenge into a $4,200 payout — in one week." No intro, no logo.</p></div></div>
+      <div class="acc"><button class="acc-h">2 · Deliver one real micro-insight <span class="chev">▸</span></button><div class="acc-b"><p>The Short must satisfy on its own. Give them <em>something</em> complete, or completion collapses and it never funnels.</p></div></div>
+      <div class="acc"><button class="acc-h">3 · Cut on the open loop (last 3s) <span class="chev">▸</span></button><div class="acc-b"><p>"The exact rule that would've blown the account is in the full breakdown." Point to the full video — pinned comment, end card, "▶ full video."</p></div></div>
+      <div class="acc"><button class="acc-h">4 · Make the full video deliver <span class="chev">▸</span></button><div class="acc-b"><p>Pay off the promised resolution in the first 30 seconds — or the cross-over audience bounces and YouTube reads a broken promise.</p></div></div>
 
       <div class="callout warn"><span class="lbl">The trap to avoid</span>A pure tease that withholds <em>everything</em> frustrates viewers → they swipe → completion drops below the 70% gate → the Short dies in seed and funnels no one. <strong>Satisfy the small question, tease the big one.</strong> Cliffhanger ≠ bait.</div>
 
       <h3>Per-platform routing</h3>
       <div class="grid">
-        <div class="tile"><div class="t">YouTube</div><div class="big">Short → Long-Form</div><p>Native bridge. Pin the long-form in the Short's comment and add an end screen. Same topic cluster = strongest hand-off.</p></div>
-        <div class="tile"><div class="t">Instagram</div><div class="big">Reel → Full Reel / Link</div><p>Tease in a &lt;60s Reel, resolve in a longer Reel (up to 3 min) or link in bio. DM-share the tease.</p></div>
-        <div class="tile"><div class="t">Facebook</div><div class="big">Reel → Feed video</div><p>Same clip, stripped of any watermark. Private-share is the amplifier — make the tease send-worthy.</p></div>
-        <div class="tile"><div class="t">TikTok</div><div class="big">Short → Series</div><p>Resolve across a multi-part series/playlist — the 2026 drama feed rewards serialized arcs. End on "Part 2 →", completion first.</p></div>
-        <div class="tile"><div class="t">X</div><div class="big">Post → Thread</div><p>The hook post states the result; the thread resolves it. Put the full-video link in a reply, never the first post.</p></div>
+        <div class="tile"><div class="t">YouTube</div><div class="big" style="font-size:17px">Short → Long-Form</div><p>Native bridge. Pin the long-form in the Short's comment + end screen. Same topic cluster = strongest hand-off.</p></div>
+        <div class="tile"><div class="t">Instagram</div><div class="big" style="font-size:17px">Reel → Full / Link</div><p>Tease in a &lt;60s Reel, resolve in a longer Reel (up to 3 min) or link in bio. DM-share the tease.</p></div>
+        <div class="tile"><div class="t">Facebook</div><div class="big" style="font-size:17px">Reel → Feed video</div><p>Same clip, no watermark. Private-share is the amplifier — make the tease send-worthy.</p></div>
+        <div class="tile"><div class="t">TikTok</div><div class="big" style="font-size:17px">Short → Series</div><p>Resolve across a multi-part series. End on "Part 2 →", completion first.</p></div>
+        <div class="tile"><div class="t">X</div><div class="big" style="font-size:17px">Post → Thread</div><p>The hook post states the result; the thread resolves it. Full-video link in a reply, never the first post.</p></div>
       </div>
     </section>
 
-    <section id="pillars">
-      <h2>Content Pillars</h2>
-      <p class="sub">Three pillars carry the revamp. The first two are the biggest view + positive-sentiment drivers we have.</p>
-
-      <h3>1 · Meet the Trader <span class="pill good">highest views</span></h3>
-      <p>Profile real funded traders. Face, voice, story. This archetype consistently out-pulls pure education on raw views and builds the most positive sentiment — the trader is the protagonist, FundedNext is the system they use.</p>
-      <ul>
-        <li>Hook on the human result, not the brand: "He was rejected by 3 firms. Here's the week everything changed."</li>
-        <li>Show the mechanism — the actual dashboard, the actual payout, the actual rule they respected.</li>
-        <li><strong>By format</strong> — Short/Reel: the emotional turning-point as a cliffhanger → full video · Long-form: the full journey (mini-doc) · Carousel: stats + story across 6–8 slides.</li>
-      </ul>
-
-      <h3>2 · Changing Lives <span class="pill good">positive brand</span></h3>
-      <p>Transformation stories — what a payout actually changed. Highest positive-sentiment content in the niche. Keep it factual and specific, never performative.</p>
-      <ul>
-        <li>Concrete before/after. Named amounts (verified). Real footage over stock.</li>
-        <li>Frame rewards correctly: <strong>performance-based rewards</strong> from a simulated/evaluation program — never "live trading profits."</li>
-        <li><strong>By format</strong> — Short/Reel: the single before→after beat (the reveal) · Long-form: the full story with context · Carousel/Feed: a quote + verified-numbers card.</li>
-      </ul>
-
-      <h3>3 · Educational — Challenges & Rules <span class="pill new">cliffhanger format</span></h3>
-      <p>Scale short-form that explains how FundedNext actually works — drawdown, payout guarantee, consistency, the specific challenge models — packaged as cliffhangers into full breakdowns.</p>
-      <ul>
-        <li>Name the specific product: <strong>Bolt</strong>, <strong>Rapid</strong>, <strong>Legacy</strong> (Futures), <strong>Stellar</strong> / <strong>Stellar Instant</strong> (CFD). Never "a FundedNext challenge."</li>
-        <li>Use proof points: 24-hour payout guarantee or $1,000 extra; rules visible before purchase; same process for every trader. <em>Verify live figures before publishing.</em></li>
-        <li>Short: "The one Bolt Challenge rule most people miss." → Full video: the complete rule walk-through.</li>
-        <li><strong>By format</strong> — Short/Reel: one rule, one cliffhanger → full breakdown · Long-form: complete challenge/rule walk-through (evergreen, ranks in Search) · Carousel: step-by-step rule breakdown (save-worthy) · X: a thread of the key rules.</li>
-      </ul>
-      <div class="callout"><span class="lbl">Why trading content over-performs</span>Real money creates real stakes — the strongest driver of watch time and shares. Lead with the stake, teach the mechanism, let the system speak.</div>
-    </section>
-
-    <section id="hooks">
+    <!-- HOOKS -->
+    <section class="panel" id="panel-hooks">
       <h2>Hook Toolkit</h2>
       <p class="sub">Five 2026 hook frames — universal, but <em>where the hook lives and how fast it must land changes with the content type</em>.</p>
       <div class="tablewrap">
@@ -485,7 +297,7 @@
         <table>
           <thead><tr><th>Content type</th><th>The hook is…</th><th>Must land in</th></tr></thead>
           <tbody>
-            <tr><td><strong>Short-form video</strong><br><span class="muted">Reels · Shorts · TikTok · FB Reels</span></td><td>Frame 1 + first spoken line + on-screen text. Visual surprise before the caption overlay — no intro, no logo.</td><td class="g">first 1.5–3s</td></tr>
+            <tr><td><strong>Short-form video</strong><br><span class="muted">Reels · Shorts · TikTok · FB Reels</span></td><td>Frame 1 + first spoken line + on-screen text. Visual surprise before the caption — no intro, no logo.</td><td class="g">first 1.5–3s</td></tr>
             <tr><td><strong>YouTube long-form</strong></td><td>Thumbnail + title (the curiosity gap), then real value spoken in the opening.</td><td class="g">packaging + first 7s</td></tr>
             <tr><td><strong>Instagram carousel</strong></td><td>Slide 1 — a bold claim or number that makes the swipe irresistible.</td><td class="g">slide 1</td></tr>
             <tr><td><strong>X post / thread</strong></td><td>First line + a question that can't be scrolled past. Links go in a reply.</td><td class="g">first line</td></tr>
@@ -495,60 +307,40 @@
       <p class="muted" style="font-size:13.5px">Across every format: lead with the trader's result or tension — <strong>not</strong> the FundedNext name. FN earns its mention in the body, as the system being used.</p>
     </section>
 
-    <section id="firsthour">
-      <h2>First-Hour Tactics</h2>
-      <p class="sub">The seed window is short and unforgiving — and the right first move differs by platform and content type.</p>
-      <div class="tablewrap">
-        <table>
-          <thead><tr><th>Platform</th><th>Content type</th><th>First-hour move</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Instagram</strong></td><td>Reel / Carousel</td><td>Post to Stories within the hour, reply to every comment, and DM the Reel to a few real people — sends are the top non-follower signal.</td></tr>
-            <tr><td><strong>Facebook</strong></td><td>Reel / Feed</td><td>Share to your Story + one relevant Group and prompt a private share (Messenger/WhatsApp). Post same-day for the +50% freshness push.</td></tr>
-            <tr><td><strong>TikTok</strong></td><td>Short video</td><td>Post when your followers are online (they gate first) and reply to early comments with real answers — no "comment YES" bait.</td></tr>
-            <tr><td><strong>YouTube</strong></td><td>Shorts</td><td>The first 30–60 min decides it: pin the long-form link in the comment, reply fast, confirm the loop is clean.</td></tr>
-            <tr><td><strong>YouTube</strong></td><td>Long-form</td><td>Reply to 50+ comments in the first 2 hours (+15–20% reach); if 48h CTR is under 4%, swap the thumbnail (Test &amp; Compare).</td></tr>
-            <tr><td><strong>X</strong></td><td>Post / thread</td><td>Reply to your own post with context/link <strong>within the first 30 min</strong> and answer every reply — one engaged chain ≈ 150× a like. First 6h is the whole window.</td></tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- PILLARS -->
+    <section class="panel" id="panel-pillars">
+      <h2>Content Pillars</h2>
+      <p class="sub">Three pillars carry the revamp. The first two are the biggest view + positive-sentiment drivers we have.</p>
+      <div class="subctl"><span class="hd">The three pillars</span><button data-exp="open">Expand</button><button data-exp="close">Collapse</button></div>
+      <div class="acc open"><button class="acc-h">1 · Meet the Trader <span class="chev">▸</span></button><div class="acc-b">
+        <p><span class="pill good">highest views</span> Profile real funded traders. Face, voice, story. Out-pulls pure education on raw views and builds the most positive sentiment — the trader is the protagonist, FundedNext is the system they use.</p>
+        <ul>
+          <li>Hook on the human result, not the brand: "He was rejected by 3 firms. Here's the week everything changed."</li>
+          <li>Show the mechanism — the actual dashboard, the actual payout, the actual rule they respected.</li>
+          <li><strong>By format</strong> — Short/Reel: the turning-point as a cliffhanger → full video · Long-form: the full journey (mini-doc) · Carousel: stats + story across 6–8 slides.</li>
+        </ul>
+      </div></div>
+      <div class="acc"><button class="acc-h">2 · Changing Lives <span class="chev">▸</span></button><div class="acc-b">
+        <p><span class="pill good">positive brand</span> Transformation stories — what a payout actually changed. Highest positive-sentiment content in the niche. Keep it factual and specific, never performative.</p>
+        <ul>
+          <li>Concrete before/after. Named amounts (verified). Real footage over stock.</li>
+          <li>Frame rewards correctly: <strong>performance-based rewards</strong> from a simulated/evaluation program — never "live trading profits."</li>
+          <li><strong>By format</strong> — Short/Reel: the single before→after beat · Long-form: the full story with context · Carousel: a quote + verified-numbers card.</li>
+        </ul>
+      </div></div>
+      <div class="acc"><button class="acc-h">3 · Educational — Challenges &amp; Rules <span class="chev">▸</span></button><div class="acc-b">
+        <p><span class="pill new">cliffhanger format</span> Short-form that explains how FundedNext actually works — drawdown, payout guarantee, consistency, the specific challenge models — packaged as cliffhangers into full breakdowns.</p>
+        <ul>
+          <li>Name the specific product: <strong>Bolt</strong>, <strong>Rapid</strong>, <strong>Legacy</strong> (Futures), <strong>Stellar</strong> / <strong>Stellar Instant</strong> (CFD). Never "a FundedNext challenge."</li>
+          <li>Use proof points: 24-hour payout guarantee or $1,000 extra; rules visible before purchase; same process for every trader. <em>Verify live figures before publishing.</em></li>
+          <li>Short: "The one Bolt Challenge rule most people miss." → Full video: the complete rule walk-through.</li>
+        </ul>
+      </div></div>
+      <div class="callout"><span class="lbl">Why trading content over-performs</span>Real money creates real stakes — the strongest driver of watch time and shares. Lead with the stake, teach the mechanism, let the system speak.</div>
     </section>
 
-    <section id="packaging">
-      <h2>Thumbnails & Captions</h2>
-      <p class="sub">Packaging is a ranking surface, not decoration — and each content type is packaged differently.</p>
-      <h3>YouTube long-form — thumbnail + title</h3>
-      <ul>
-        <li>One authentic emotional face, one focal point, 3–5 word text hook that <strong>does not repeat the title</strong>. A face still wins — <strong>~69%</strong> of breakout thumbnails use one, ~80% among the biggest overperformers <span class="muted">(vidIQ, mid-2026)</span>.</li>
-        <li>Upload <strong>1280×720, 16:9</strong>. Readable at 150px (mobile), high contrast, passes the grayscale test. Keep key elements out of the <strong>bottom-right</strong> (duration badge).</li>
-        <li>2026: <strong>authentic beats exaggerated</strong> — AI-looking thumbnails average ~30% lower CTR. Always <strong>Test &amp; Compare</strong> — it now picks the winner by <strong>watch-time share</strong>, not just clicks. Change one element per test.</li>
-      </ul>
-      <h3>Short-form — the first frame <span class="muted" style="font-weight:400;font-size:14px">(Reels · Shorts · TikTok · FB Reels)</span></h3>
-      <ul>
-        <li>There is no thumbnail on the swipe feed: <strong>frame 1 is the packaging</strong>. Open on motion or the payoff — never a logo or countdown.</li>
-        <li>3–5 word on-screen text hook in the first second; set a custom cover for the profile grid + Search surfaces.</li>
-      </ul>
-      <h3>Instagram carousel — the cover slide</h3>
-      <ul>
-        <li>Slide 1 carries the whole promise (bold claim / number). Unfinished carousels get re-shown starting at the next slide — so make slide 2+ pull too.</li>
-      </ul>
-      <h3>Captions &amp; SEO — every platform</h3>
-      <ul>
-        <li>Word-by-word animated captions, 3–7 words at a time, in the center-third safe zone. +12–40% watch time.</li>
-        <li>Captions are a <strong>ranking signal</strong> on IG and a search signal on YouTube/TikTok — write keywords in naturally, say them out loud in the first 5–30s.</li>
-        <li><strong>YouTube description:</strong> the first <strong>125 characters</strong> show in search before truncation — lead with the primary keyword and the video's value. Write for <strong>viewer intent</strong> (semantic coverage), not exact-match stuffing. Add <strong>chapters/timestamps</strong> (up to ~11% more average view duration; unlocks Google "Key Moments"). Aim 150–300 words. Back-end tags matter far less now.</li>
-        <li><strong>TikTok search</strong> is a primary channel (3B+ searches/day, ~84% in the exploration phase). Use <strong>Creator Search Insights → Content Gap</strong> to find high-demand, low-supply topics, and add approved <strong>keywords</strong> to a video's metadata (they work like hashtags).</li>
-        <li>Hashtags: IG 3–5 (classification, not discovery) · TikTok 3–5 niche · X max 1–2 · YouTube 3–5 <span class="muted">(over 15 and it ignores all of them)</span>.</li>
-      </ul>
-
-      <h3>YouTube localization — reaching other countries</h3>
-      <ul>
-        <li>The "recording location" field is minor metadata and does <strong>not</strong> push a video into that country. YouTube seeds to your own geography first, then expands via watch-history clusters and language.</li>
-        <li>The real geo levers: set the correct <strong>audio language</strong>, add <strong>captions/subtitles</strong> in target languages, and use <strong>multi-language audio</strong> tracks (auto-dubbing, which YouTube now promotes as a discovery tool).</li>
-        <li>Workflow: upload normally, check Analytics for countries already driving impressions despite the language mismatch, then <strong>localize into those markets</strong>. Don't obsess over the "filmed in" field.</li>
-      </ul>
-    </section>
-
-    <section id="bios">
+    <!-- BIOS -->
+    <section class="panel" id="panel-bios">
       <h2>Bios &amp; Search</h2>
       <p class="sub">Search now drives discovery on every platform, so a bio is a ranking surface — not decoration. Front-load the searchable phrase, name the niche plainly, and give one reason to follow plus one link.</p>
       <ul class="check">
@@ -560,39 +352,332 @@
       <div class="callout"><span class="lbl">FN bio pattern</span><strong>Searchable term + positioning + one link.</strong> e.g. "Funded trader · FundedNext challenges &amp; payouts, explained → [link]." Keep every creator in one lane.</div>
     </section>
 
+    <!-- ORIGINALITY -->
+    <section class="panel" id="panel-originality">
+      <h2>Staying Original — How Detection Works</h2>
+      <p class="sub">Discovery platforms reward original uploads and bury copies. They don't compare raw pixels — they build a small fuzzy <strong>fingerprint</strong> of a clip's visuals and audio and check whether a match already exists. If it does, <em>your</em> upload is scored as the copy and demoted.</p>
+
+      <div class="subctl"><span class="hd">The three detection layers</span><button data-exp="open">Expand</button><button data-exp="close">Collapse</button></div>
+      <div class="acc"><button class="acc-h">Layer 1 · Perceptual hash <span class="muted" style="font-weight:400;font-size:13px">— visual</span> <span class="chev">▸</span></button><div class="acc-b"><p>Each frame → grayscale, resized to 32×32, DCT, keep the top-left 8×8 low-frequency coefficients, binarize against the median → a 64-bit fingerprint. Compared by Hamming distance: near-duplicates sit a few bits apart, unrelated clips ~32. Robust to mild recompression, resizing and small overlays; sensitive to flips, big crops and colour shifts.</p></div></div>
+      <div class="acc"><button class="acc-h">Layer 2 · Audio fingerprint <span class="muted" style="font-weight:400;font-size:13px">— sound</span> <span class="chev">▸</span></button><div class="acc-b"><p>A separate system on the waveform: sample the spectrogram, find the loud peaks, hash their pattern (the Shazam method). Matches by bit-error-rate, threshold ≈0.30. Runs independent of the picture — lifting someone's exact audio flags you even if the visuals differ.</p></div></div>
+      <div class="acc"><button class="acc-h">Layer 3 · Learned embeddings + watermark <span class="muted" style="font-weight:400;font-size:13px">— neural</span> <span class="chev">▸</span></button><div class="acc-b"><p>A neural model catches what simple hashing misses — flips, large crops, colour shifts and inserted watermarks — plus a dedicated detector for TikTok/CapCut logos.</p></div></div>
+      <p class="muted" style="font-size:14.5px;max-width:680px">This is why a filter, a small crop or a caption bar does <strong>not</strong> make a repost "original" — none of them change the low-frequency structure the hash actually reads.</p>
+
+      <h3>What each platform does about copies</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Platform</th><th>Behaviour</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Instagram</strong> <span class="pill new">2026</span></td><td>Visual fingerprinting flags ~<strong>70%+ similarity</strong> <span class="muted">(approx)</span> as a repost and demotes it; detects edited/watermarked/re-uploaded clips; recommends the original and can <strong>replace your repost with the original creator's version</strong>. 10+ reposts/30 days = recommendation ban (now covers photos &amp; carousels). Content Protection (Nov 2025) alerts you to copies of your uploads; original earns 40–60% more distribution.</td></tr>
+            <tr><td><strong>YouTube</strong></td><td>Content ID fingerprints audio &amp; video against a reference database; a separate "reused / repetitious content" policy gates monetization for low-transformation re-uploads; watermarked Shorts are demoted.</td></tr>
+            <tr><td><strong>TikTok</strong></td><td>Audio and visual fingerprinting with sophisticated duplicate detection — resurfaces the older matching video, and buries re-uploads and watermarked files.</td></tr>
+            <tr><td><strong>Facebook</strong></td><td>Meta fingerprints every clip, favours the first uploader, and excludes watermarked / reposted video from recommendations.</td></tr>
+            <tr><td><strong>X</strong></td><td>No Meta-style originality demotion — its levers are topical relevance (SimClusters) and Community Notes, not fingerprint matching.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Make content register as original</h3>
+      <ol class="steps">
+        <li><strong>Export one clean master; upload a separate clean file to each platform.</strong> Never download a published video from one app and re-upload it to another — both the audio fingerprint and any watermark will match.</li>
+        <li><strong>No platform watermarks, ever.</strong> The learned-embedding pass catches them even when cropped.</li>
+        <li><strong>Reset the fingerprint where it counts, not cosmetically.</strong> Filters, small crops and speed tweaks don't change the structure the hash reads. Your own footage, screen recordings, voiceover and your own (or substantially rebuilt) audio do. For FundedNext this is easy — dashboards, payout screens, charts and a creator's own face and voice are inherently un-fingerprinted raw material.</li>
+        <li><strong>If you must use an existing clip, transform it well past the threshold</strong> with real commentary, reaction or added analysis. A bare repost with a caption is not enough.</li>
+        <li><strong>Post natively; keep metadata clean.</strong></li>
+        <li><strong>Manage the account, not just the post</strong> — keep a high original-to-repost ratio, stay under the aggregator thresholds, and stay in one topic cluster.</li>
+      </ol>
+
+      <div class="callout warn"><span class="lbl">Replication: format, not file</span>When we scale a winning video across creators or accounts, replicate the <strong>format — not the file</strong>. Same hook, same structure, same beat-for-beat script, <strong>filmed fresh by each creator</strong> so every upload carries its own original fingerprint. Posting one identical file across many accounts is exactly what 2026 fingerprinting flags as unoriginal — the extra copies get demoted or replaced by whoever posted first. This keeps the replication engine and makes it originality-safe.</div>
+    </section>
+
     <footer>
-      FundedNext Content Distribution Playbook · calibrated July 2026 · platform-news refresh Aug 2026 · internal use only.<br>
+      FundedNext Content Distribution Playbook · calibrated Jul 2026 · platform-news refresh Aug 2026 · internal use only.<br>
       Generated from the <code>platform-content-virality</code> skill — the single source of truth for algorithm models, thresholds, and brand rules. Regenerate on skill update rather than hand-editing.
     </footer>
   </main>
 </div>
 
 <script>
-  // Mobile nav
-  const side=document.getElementById('side'),scrim=document.getElementById('scrim'),btn=document.getElementById('menuBtn');
-  function toggle(o){side.classList.toggle('open',o);scrim.classList.toggle('open',o)}
-  btn.addEventListener('click',()=>toggle(!side.classList.contains('open')));
-  scrim.addEventListener('click',()=>toggle(false));
-  side.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggle(false)));
+  // ---------- Data ----------
+  const PHASES = {
+    '1': '<span class="lbl">Phase 1 · Seed · 0–60 min</span>Tiny interest-matched test cohort. Gate = the hook (hold rate / swipe rate / CTR). A video that can\'t survive the seed test can\'t go viral — full stop.',
+    '2': '<span class="lbl">Phase 2 · Resonance · 1–48 hrs</span>Larger cohort. Gate = shares + watch time: "would someone send this?" Most "good" content dies here — watchable, but not shareable.',
+    '3': '<span class="lbl">Phase 3 · Expansion · 1–7 days</span>Broad strangers. Gate = your signals hold up <em>outside</em> your niche.',
+    '4': '<span class="lbl">Phase 4 · Explosive · 1 week+</span>Self-reinforcing. Shares and loops accelerate as the audience widens.'
+  };
 
-  // Scroll-spy
-  const links=[...document.querySelectorAll('nav.side a')];
-  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
-  const obs=new IntersectionObserver(es=>{
-    es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));map.get(e.target.id)?.classList.add('active')}})
-  },{rootMargin:'-20% 0px -70% 0px'});
-  document.querySelectorAll('main section').forEach(s=>obs.observe(s));
+  const DATA = {
+    youtube: {
+      name:'YouTube', color:'#ff6b6b',
+      sub:'Two content types with separate algorithms in 2026 — Shorts win discovery, long-form converts and compounds in Search.',
+      intro:`<div class="tgroup card">
+        <div class="toggle"><button class="on" data-state="live">Live now (2026)</button><button data-state="before">Before</button></div>
+        <div class="tg-pane" data-state="live"><strong>How a "view" is counted:</strong> it registers the instant playback starts (all formats since Aug 24 2026; Shorts since Mar 2025). Headline views are effectively a <strong>vanity number</strong>. The watch-based metric survives, renamed <strong>"engaged views"</strong> — the number that governs monetization + Partner Program (10M engaged Shorts views / 90 days, not total views). Shorts and long-form algorithms are now formally split. <em>Report engaged views to partners, not the headline count.</em></div>
+        <div class="tg-pane" data-state="before" hidden><strong>How a "view" used to be counted:</strong> a view required meaningful watch time, so the public count roughly tracked real watching — and was the number partners reported. The headline figure and the "did people actually watch" signal were effectively the same number.</div>
+      </div>`,
+      types:{
+        longform:{
+          label:'Long-form', seed:'subscribers + Browse/Suggested', peak:'48h–1 week', life:'evergreen — compounds in Search for months',
+          first:`Your <strong>subscribers</strong>, plus Browse/Suggested to interest-matched viewers. The Feb-2026 Browse feed matches by <strong>micro-niche</strong> — a focused channel gets found, a generalist gets filtered.`,
+          wider:`Thumbnail + title <strong>earn clicks</strong> (≥4% CTR) <em>and</em> people stay (satisfaction + watch time). <strong>Session contribution</strong> — how much your video extends the viewer's session — is now the leading long-form signal, so series &amp; playlists beat one-offs. Shares &amp; saves ≈5× a like.`,
+          kills:`<strong>Clickbait that makes people bounce</strong> — a high click rate followed by a quick exit scores worse than no click. A weak first <strong>7 seconds</strong> sinks retention.`,
+          gate:`CTR ≥4% in 48h · 30s retention ≥70%`,
+          signals:`Satisfaction ~35% · AVD ~35% · CTR ~20% · Session ~10%. Shares &amp; saves ≈5× likes.`,
+          sections:[
+            {h:'First-hour tactics', body:`<ul><li>Reply to <strong>50+ comments in the first 2h</strong> (+15–20% reach).</li><li><strong>Pin a genuine question</strong> as your first comment and reply back — threaded back-and-forth is a distribution signal. Avoid "comment yes" bait.</li><li>If 48h CTR is under 4%, swap the thumbnail (Test &amp; Compare).</li></ul>`},
+            {h:'Thumbnail &amp; title', body:`<ul><li>Upload <strong>1280×720, 16:9</strong>. One authentic emotional face (~69% of breakout thumbnails use one, ~80% of the biggest overperformers), one focal point, a 3–5 word text hook that <strong>doesn't repeat the title</strong>.</li><li>Readable at 150px, high contrast, passes the grayscale test. Keep key elements out of the <strong>bottom-right</strong> (duration badge).</li><li>Authentic beats exaggerated — AI-looking thumbnails average ~30% lower CTR. <strong>Test &amp; Compare</strong> now picks the winner by <strong>watch-time share</strong> — change one element per test.</li></ul>`},
+            {h:'Description &amp; SEO', body:`<ul><li>The first <strong>125 characters</strong> show in search — lead with the primary keyword and the video's value.</li><li>Write for <strong>viewer intent</strong> (semantic coverage), not exact-match stuffing.</li><li>Add <strong>chapters/timestamps</strong> (up to ~11% more AVD; unlocks Google "Key Moments"). Aim 150–300 words; hashtags 3–5 (over 15 = all ignored); back-end tags matter far less now.</li></ul>`},
+            {h:'Reaching other countries', body:`<ul><li>The "recording location" field is minor metadata and does <strong>not</strong> push a video into that country.</li><li>Real levers: correct <strong>audio language</strong>, <strong>captions/subtitles</strong> in target languages, and <strong>multi-language audio</strong> (auto-dubbing, promoted as a discovery tool).</li><li>Upload normally → check Analytics for countries already driving impressions → localize into those markets.</li></ul>`},
+            {h:'Hook placement', body:`<p>The hook is the <strong>thumbnail + title</strong> (the curiosity gap), then real value spoken in the opening. Must land in <span class="g">packaging + first 7s</span>.</p>`},
+            {h:'Cliffhanger routing', body:`<p><strong>Short → Long-form.</strong> Pin the long-form in the Short's comment and add an end screen. Same topic cluster = strongest hand-off. Cross-format channels grow <strong>41% faster</strong>.</p>`},
+            {h:'Staying original here', body:`<p>Content ID fingerprints audio &amp; video against a reference database. A separate <strong>"reused / repetitious content"</strong> policy gates monetization for low-transformation re-uploads; watermarked Shorts are demoted.</p>`}
+          ]
+        },
+        shorts:{
+          label:'Shorts', seed:'interest-matched non-subscribers', peak:'first 30–60 min', life:'extended weeks; funnels to long-form',
+          first:`<strong>Interest-matched non-subscribers</strong> in the Shorts feed. A tight <strong>30–60 minute test</strong> decides whether it dies or gets pushed. The Shorts algorithm is now <strong>formally separated</strong> from long-form — a weak Short no longer drags your long-form down.`,
+          wider:`People <strong>don't swipe away</strong>, watch to the end, loop it, and share it off-platform. Your Shorts audience then feeds your <strong>long-form recommendations</strong> — the funnel that grows subscribers.`,
+          kills:`A slow or branded <strong>intro</strong> (frame 1 must land) and low novelty — repeating what a thousand others posted keeps distribution flat.`,
+          gate:`Viewed-vs-Swiped ≥50% · Completion ≥70%`,
+          signals:`Retention bands ≈65% (&lt;30s) · 50% (30–60s); under 40% deprioritized regardless of CTR. Loop/rewatch ≥15–20% · cross-platform shares.`,
+          sections:[
+            {h:'First-hour tactics', body:`<p>The first 30–60 min decides it: pin the long-form link in the comment, reply fast, and confirm the loop is clean.</p>`},
+            {h:'Packaging — the first frame', body:`<p>Frame 1 <em>is</em> the packaging — open on motion or the payoff, never a logo or countdown. 3–5 word on-screen text hook in the first second. Set a custom cover for the profile grid + Search.</p>`},
+            {h:'Hook placement', body:`<p>Frame 1 + first spoken line + on-screen text. Must land in <span class="g">first 1.5–3s</span>.</p>`},
+            {h:'Cliffhanger routing', body:`<p>Short → Long-form or a multi-part series. Satisfy the small question, tease the big one — pure teases tank completion below the 70% gate.</p>`},
+            {h:'Staying original here', body:`<p>Watermarked Shorts are demoted; the reused-content policy gates monetization on low-transformation re-uploads. Engaged views (not headline views) drive YPP.</p>`}
+          ]
+        }
+      }
+    },
 
-  // Live-now / Before toggles
-  document.querySelectorAll('.tgroup').forEach(g=>{
-    const btns=g.querySelectorAll('.toggle button');
-    const panes=g.querySelectorAll('.tg-pane');
-    btns.forEach(b=>b.addEventListener('click',()=>{
-      const s=b.dataset.state;
-      btns.forEach(x=>x.classList.toggle('on',x===b));
-      panes.forEach(p=>{p.hidden = p.dataset.state!==s});
+    instagram:{
+      name:'Instagram', color:'#e879f9',
+      sub:'Four separate ranking systems and an audition model that tests every Reel on strangers first. Sends are the currency.',
+      intro:`<div class="tgroup card">
+        <div class="toggle"><button class="on" data-state="live">Live now (2026)</button><button data-state="before">Before</button></div>
+        <div class="tg-pane" data-state="live"><strong>2026 state:</strong> four separate ranking systems (Feed / Reels / Stories / Explore), a per-user <strong>"Your Algorithm"</strong> topic dashboard (now on Feed too), and an <strong>audition</strong> model that tests every Reel on non-followers first. The repost/aggregator penalty now costs reach on <strong>photos and carousels too</strong> (10+ reposts / 30 days = recommendation ban), and <strong>Content Protection</strong> (Nov 2025) flags copies of your uploads. AI translations are now a named reach tactic.</div>
+        <div class="tg-pane" data-state="before" hidden><strong>Before:</strong> the repost/aggregator penalty mainly hit Reels; no per-user topic dashboard; less transparency about why a post was suppressed; translations weren't positioned as a reach lever.</div>
+      </div>`,
+      types:{
+        reels:{
+          label:'Reels', seed:'non-followers (audition)', peak:'1–24h', life:'~35 days; DM-share flywheel',
+          first:`<strong>Non-followers, before your own followers.</strong> Instagram auditions every Reel to a small topic-matched group of strangers — 55% of Reels views come from non-followers. Win the small room and it moves to a bigger one.`,
+          wider:`Someone <strong>DMs it to a friend</strong> (sends count 3–5× a like, the #1 non-follower signal), <strong>saves</strong> it, and watches it through. Replays and a high watch-time-to-length ratio matter. <strong>AI translations</strong> extend reach; longer Reels (up to 3 min) now reach non-followers.`,
+          kills:`<strong>Reposting</strong> someone else's clip or a <strong>TikTok/CapCut watermark</strong> = excluded from recommendations. 10+ reposts in 30 days = recommendation ban. Original earns <strong>40–60% more</strong> reach.`,
+          gate:`3-sec hold ≥60%`,
+          signals:`Watch time (#1) · DM sends 3–5× likes · saves 3× · completion ≥50% for Explore.`,
+          sections:[
+            {h:'First-hour tactics', body:`<p>Post to Stories within the hour, reply to every comment, and DM the Reel to a few real people — sends are the top non-follower signal. Use <strong>Trial Reels</strong> to test on non-followers before pushing to your audience.</p>`},
+            {h:'Packaging — the first frame', body:`<p>Frame 1 is the packaging — open on motion or the payoff. 3–5 word on-screen hook in the first second; set a custom cover for the grid + Search. Raw &gt; polished.</p>`},
+            {h:'Hook placement', body:`<p>Frame 1 + first spoken line + on-screen text. <span class="g">first 1.5–3s</span>.</p>`},
+            {h:'Cliffhanger routing', body:`<p>Reel → a longer Reel (up to 3 min) or link in bio. DM-share the tease.</p>`},
+            {h:'Staying original here', body:`<p>Visual fingerprinting flags ~70%+ similarity as a repost and demotes it; it detects edited/watermarked/re-uploaded clips, recommends the original, and can <strong>replace your repost with the original creator's version</strong>. Content Protection alerts you to copies in the Professional Dashboard.</p>`}
+          ]
+        },
+        carousel:{
+          label:'Carousel / Feed', seed:'followers + Explore', peak:'first hours', life:'save-extended tail',
+          first:`<strong>Followers + Explore.</strong> Carousels lean more on your existing audience than Reels do, then expand through Explore on saves.`,
+          wider:`<strong>Dwell time + saves.</strong> Unfinished carousels get <strong>re-shown starting at the next slide</strong>, so slide 2+ has to keep pulling.`,
+          kills:`Reposts (the 10+/30-day penalty now covers photos &amp; carousels) and low dwell — a weak slide 1 ends it.`,
+          gate:`Dwell time + saves`,
+          signals:`Saves · dwell · sends · completion of the swipe.`,
+          sections:[
+            {h:'First-hour tactics', body:`<p>Reply to every comment and share to Stories; saves are the signal to engineer.</p>`},
+            {h:'Packaging — the cover slide', body:`<p>Slide 1 carries the whole promise (a bold claim or number). Make slide 2+ pull too, since re-shows start there.</p>`},
+            {h:'Hook placement', body:`<p>Slide 1 — a bold claim or number that makes the swipe irresistible. <span class="g">slide 1</span>.</p>`},
+            {h:'Cliffhanger routing', body:`<p>Carousel → full video or link. Stats + story across 6–8 slides.</p>`},
+            {h:'Staying original here', body:`<p>Meta fingerprints images too now — the aggregator penalty extends to photos &amp; carousels. Favour original stills and screens.</p>`}
+          ]
+        }
+      }
+    },
+
+    facebook:{
+      name:'Facebook', color:'#4f9cff',
+      sub:'~50% of the feed is now strangers, and private shares outrank every like. One clean clip spans four Meta surfaces.',
+      intro:`<div class="tgroup card">
+        <div class="toggle"><button class="on" data-state="live">Live now (2026)</button><button data-state="before">Before</button></div>
+        <div class="tg-pane" data-state="live"><strong>2026 state:</strong> ~50% of the feed is recommended content from accounts people don't follow — reach isn't capped to your page's fans. One clean clip can span four Meta surfaces (Feed / Reels / Messenger / WhatsApp) via the cross-app graph (~3B ceiling).</div>
+        <div class="tg-pane" data-state="before" hidden><strong>Before:</strong> the feed leaned on followed Pages and friends; far less interest-based reach to strangers, and less cross-app amplification.</div>
+      </div>`,
+      types:{
+        reelsfeed:{
+          label:'Reels + Feed', seed:'interest-matched non-followers (~50%)', peak:'1–24h', life:'~35 days; cross-app',
+          first:`<strong>Interest-matched non-followers.</strong> ~50% of the Facebook feed is recommended content from accounts people don't follow.`,
+          wider:`People <strong>privately share it</strong> (Messenger/WhatsApp) — that outranks every like — and watch it through (~90% completion can 10× reach). Same-day posts get up to +50% surfacing.`,
+          kills:`<strong>Watermarked or reposted video</strong> — Meta fingerprints every clip and favours the first uploader. Static image/link posts get the least reach.`,
+          gate:`Watch-through · ~90% completion can 10× reach`,
+          signals:`Private shares (Messenger/WhatsApp) outrank likes · UTIS interest survey · saves.`,
+          sections:[
+            {h:'First-hour tactics', body:`<p>Share to your Story + one relevant Group and prompt a private share (Messenger/WhatsApp). Post same-day for the +50% freshness push.</p>`},
+            {h:'Packaging', body:`<p>Same clip as elsewhere, <strong>stripped of any watermark</strong>. Native upload only.</p>`},
+            {h:'Hook placement', body:`<p>Frame 1 — motion or payoff. <span class="g">first 1.5–3s</span>.</p>`},
+            {h:'Cliffhanger routing', body:`<p>Reel → Feed video. Private-share is the amplifier — make the tease send-worthy.</p>`},
+            {h:'Staying original here', body:`<p>Meta fingerprints every clip, favours the first uploader, and excludes watermarked/reposted video from recommendations.</p>`}
+          ]
+        }
+      }
+    },
+
+    tiktok:{
+      name:'TikTok', color:'#00d3a7',
+      sub:'Follower-first in 2026, search is now a primary channel, and the US algorithm is being re-baselined under new ownership.',
+      intro:`<div class="tgroup card">
+        <div class="toggle"><button class="on" data-state="live">Live now (2026)</button><button data-state="before">Before</button></div>
+        <div class="tg-pane" data-state="live"><strong>Ownership &amp; algorithm:</strong> US operations are now <strong>TikTok USDS Joint Venture</strong> (Oracle / Silver Lake / MGX managing; ByteDance retains 19.9%; closed Jan 22 2026). Oracle is retraining the US recommendation algorithm on US data, and AI-disclosure / branded-content labeling tightened. Expect <strong>reach variance through 2026</strong> while it recalibrates. New on upload: AI transitions, "AI Pick for Me."</div>
+        <div class="tg-pane" data-state="before" hidden><strong>Before:</strong> a single global ByteDance recommender, no US ownership split, looser AI-disclosure labeling — benchmarks were stable across regions.</div>
+      </div>`,
+      types:{
+        short:{
+          label:'Short video', seed:'your followers first, then FYP', peak:'first 60 min', life:'~30 days; loop-compounding',
+          first:`<strong>Your followers first</strong> (2026 change), then non-followers if it performs. Only views lasting <strong>5+ seconds</strong> count toward distribution.`,
+          wider:`Completion is high (<strong>≥70%</strong>), people rewatch/loop, and they <strong>share</strong> it. Say your keywords out loud — TikTok search is now a major surface. Longer videos (1–3 min+) get more distribution when they hold completion.`,
+          kills:`<strong>Reposted/duplicate</strong> clips are demoted; <strong>engagement bait</strong> ("comment YES") is penalized; if viewers leave the app after your video, it's flagged a "session killer."`,
+          gate:`Completion ≥70% · qualified views = 5s+`,
+          signals:`Watch time ~40–50% · shares 3× likes · rewatch · saves · comments (quality, not count).`,
+          sections:[
+            {h:'First-hour tactics', body:`<p>Post when your followers are online (they gate first) and reply to early comments with real answers — no "comment YES" bait.</p>`},
+            {h:'Packaging &amp; search', body:`<p>Frame 1 is the packaging; on-screen text hook; custom cover for Search. <strong>Search:</strong> 3B+ searches/day, ~84% in the exploration phase — use <strong>Creator Search Insights → Content Gap</strong> for high-demand/low-supply topics, and add approved <strong>keywords</strong> to metadata (they work like hashtags).</p>`},
+            {h:'Hook placement', body:`<p>Frame 1 + first spoken line. <span class="g">first 1.5–3s</span>.</p>`},
+            {h:'Cliffhanger routing', body:`<p>Short → multi-part <strong>series</strong> — the 2026 feed rewards serialized arcs. End on "Part 2 →", completion first.</p>`},
+            {h:'Staying original here', body:`<p>Audio and visual fingerprinting with sophisticated duplicate detection — it resurfaces the older matching video and buries re-uploads and watermarked files.</p>`}
+          ]
+        }
+      }
+    },
+
+    x:{
+      name:'X', color:'#c9d3e0',
+      sub:'The only major platform where text beats video. Replies are worth ~150× a like, and the algorithm is now open source.',
+      intro:`<div class="tgroup card">
+        <div class="toggle"><button class="on" data-state="live">Live now (2026)</button><button data-state="before">Before</button></div>
+        <div class="tg-pane" data-state="live"><strong>The algorithm is open source.</strong> On Jan 20 2026 X published its Grok-powered feed on GitHub (<code>github.com/xai-org/x-algorithm</code>). The engine is <strong>Phoenix</strong>, a Grok-1 transformer that replaced the old hand-engineered rules and reads every post and video. Aug 13 2026 added more code + an "Under the Hood" page showing your own visibility-limiting labels. Free reach ≈0 since Mar 2025 — <strong>Premium is effectively required</strong>.</div>
+        <div class="tg-pane" data-state="before" hidden><strong>Before:</strong> a closed, hand-engineered ranking stack with weights nobody outside X could see, and no per-account visibility-label transparency.</div>
+      </div>`,
+      types:{
+        post:{
+          label:'Post / thread', seed:'followers + interest-matched', peak:'first ~6h', life:'~3 days; reply-driven',
+          first:`Your followers + interest-matched users. The <strong>first ~6 hours</strong> are the entire window.`,
+          wider:`<strong>Replies and conversation.</strong> A reply chain you actually engage in is worth ~<strong>150× a like</strong>. Bookmarks count heavily (10×); reposts 2×.`,
+          kills:`<strong>Links in the main post</strong> cut reach (−50–90%) — put them in a reply. Rage-bait is discounted by 2026 sentiment scoring. A per-creator <strong>diversity cap</strong> means posting more <em>dilutes</em> your reach.`,
+          gate:`First 6 hours = the whole window (replies)`,
+          signals:`Reply-with-author-reply = 150× a like · reply 27× · bookmark 10× · repost 2×. ~145k SimClusters suppress off-topic posts.`,
+          sections:[
+            {h:'First-hour tactics', body:`<p>Reply to your own post with context/link <strong>within 30 min</strong> and answer every reply — one engaged chain ≈150× a like. Post 2–3×/day, but don't over-post (diversity cap).</p>`},
+            {h:'Packaging', body:`<p><strong>Text posts outperform video</strong> — the only major platform where this is true. Lead with a number or a contrarian claim. Keep links in a reply.</p>`},
+            {h:'Hook placement', body:`<p>First line + a question that can't be scrolled past. Links go in a reply. <span class="g">first line</span>.</p>`},
+            {h:'Cliffhanger routing', body:`<p>The hook post states the result; the thread resolves it. Put the full-video link in a reply, never the first post.</p>`},
+            {h:'Staying original here', body:`<p>No Meta-style originality demotion — X's levers are topical relevance (<strong>SimClusters</strong>) and Community Notes, not fingerprint matching. Stay on-topic; off-topic posts get suppressed.</p>`}
+          ]
+        }
+      }
+    }
+  };
+
+  // ---------- Render ----------
+  const state = {};
+  function leversHTML(t){
+    return `<div class="lever-grid">
+      <div class="lever"><span class="tag first">Shows it to first</span><div>${t.first}</div></div>
+      <div class="lever"><span class="tag wider">Pushes it wider when</span><div>${t.wider}</div></div>
+      <div class="lever"><span class="tag kills">Quietly kills reach</span><div>${t.kills}</div></div>
+    </div>`;
+  }
+  function numsHTML(t){
+    return `<div class="numstrip">
+      <div class="tile"><div class="t">Phase-1 gate</div><div class="big" style="font-size:15.5px;line-height:1.35;margin-top:6px">${t.gate}</div></div>
+      <div class="tile"><div class="t">Top signals (2026)</div><p>${t.signals}</p></div>
+    </div>`;
+  }
+  function accHTML(sections){
+    return sections.map(s=>`<div class="acc"><button class="acc-h">${s.h}<span class="chev">▸</span></button><div class="acc-b">${s.body}</div></div>`).join('');
+  }
+  function renderType(key){
+    const p=DATA[key], t=p.types[state[key]];
+    const body=document.querySelector('#panel-'+key+' .pbody');
+    body.innerHTML =
+      `<div class="callout"><span class="lbl">${t.label} · at a glance</span>Seeds to <strong>${t.seed}</strong> · peak <strong>${t.peak}</strong> · ${t.life}.</div>`
+      + leversHTML(t)
+      + numsHTML(t)
+      + `<div class="subctl"><span class="hd">Play-by-play</span><button data-exp="open">Expand all</button><button data-exp="close">Collapse all</button></div>`
+      + accHTML(t.sections);
+    wire(body);
+  }
+  function renderPlatform(key){
+    const p=DATA[key];
+    const panel=document.getElementById('panel-'+key);
+    const typeKeys=Object.keys(p.types);
+    state[key]=typeKeys[0];
+    const chips=typeKeys.map(tk=>`<button class="chip" data-type="${tk}">${p.types[tk].label}</button>`).join('');
+    panel.innerHTML =
+      `<h2><span class="pdot" style="background:${p.color};box-shadow:0 0 10px ${p.color};margin-right:9px"></span>${p.name}</h2>`
+      + `<p class="sub">${p.sub}</p>`
+      + (p.intro||'')
+      + `<div class="chips">${chips}</div>`
+      + `<div class="pbody"></div>`;
+    const chipEls=panel.querySelectorAll('.chip');
+    chipEls.forEach(c=>c.addEventListener('click',()=>{
+      state[key]=c.dataset.type;
+      chipEls.forEach(x=>x.classList.toggle('on',x===c));
+      renderType(key);
     }));
+    chipEls[0].classList.add('on');
+    renderType(key);
+    wire(panel); // wire the intro toggle
+  }
+
+  // ---------- Interactions ----------
+  function wire(scope){
+    scope.querySelectorAll('.acc-h').forEach(h=>h.onclick=()=>h.parentElement.classList.toggle('open'));
+    scope.querySelectorAll('[data-exp]').forEach(b=>b.onclick=()=>{
+      const root=b.closest('.panel')||scope;
+      root.querySelectorAll('.acc').forEach(a=>a.classList.toggle('open', b.dataset.exp==='open'));
+    });
+    scope.querySelectorAll('.tgroup').forEach(g=>{
+      const btns=g.querySelectorAll('.toggle button'), panes=g.querySelectorAll('.tg-pane');
+      btns.forEach(b=>b.onclick=()=>{
+        btns.forEach(x=>x.classList.toggle('on',x===b));
+        panes.forEach(pp=>pp.hidden=pp.dataset.state!==b.dataset.state);
+      });
+    });
+  }
+
+  // Phase reveal (Overview)
+  const phaseDetail=document.getElementById('phaseDetail');
+  document.querySelectorAll('.phase[data-phase]').forEach(ph=>{
+    ph.onclick=()=>{
+      document.querySelectorAll('.phase[data-phase]').forEach(x=>x.classList.remove('sel'));
+      ph.classList.add('sel');
+      phaseDetail.innerHTML=PHASES[ph.dataset.phase];
+      phaseDetail.style.display='block';
+    };
   });
+
+  // Panel navigation
+  const side=document.getElementById('side'),scrim=document.getElementById('scrim'),btn=document.getElementById('menuBtn');
+  function closeNav(){side.classList.remove('open');scrim.classList.remove('open')}
+  function show(name){
+    if(!document.getElementById('panel-'+name)) name='overview';
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-'+name).classList.add('active');
+    document.querySelectorAll('nav.side a[data-panel]').forEach(a=>a.classList.toggle('active',a.dataset.panel===name));
+    window.scrollTo(0,0);
+    history.replaceState(null,'','#'+name);
+    closeNav();
+  }
+  document.querySelectorAll('nav.side a[data-panel]').forEach(a=>{
+    a.addEventListener('click',e=>{e.preventDefault();show(a.dataset.panel);});
+  });
+
+  // Mobile nav toggle
+  btn.addEventListener('click',()=>{const o=!side.classList.contains('open');side.classList.toggle('open',o);scrim.classList.toggle('open',o)});
+  scrim.addEventListener('click',closeNav);
+
+  // ---------- Init ----------
+  ['youtube','instagram','facebook','tiktok','x'].forEach(renderPlatform);
+  wire(document);                       // wire static panels (accordions/toggles)
+  show((location.hash||'#overview').slice(1));
 </script>
 </body>
 </html>

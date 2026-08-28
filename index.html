@@ -110,6 +110,13 @@
   .check li::before{content:"✓";position:absolute;left:0;color:var(--brand);font-weight:700}
   .ban li::before{content:"✕";color:var(--bad)}
 
+  /* Live-now / Before toggle */
+  .toggle{display:inline-flex;gap:2px;background:var(--panel2);border:1px solid var(--line2);border-radius:9px;padding:3px;margin:2px 0 12px;font-family:var(--mono)}
+  .toggle button{background:transparent;border:0;color:var(--muted);font-family:var(--mono);font-size:12px;letter-spacing:.03em;padding:6px 12px;border-radius:6px;cursor:pointer}
+  .toggle button.on{background:var(--panel);color:var(--brand);box-shadow:inset 0 0 0 1px var(--line2)}
+  .toggle button:hover:not(.on){color:var(--text)}
+  .tg-pane[hidden]{display:none}
+
   footer{color:var(--dim);font-size:13px;border-top:1px solid var(--line);margin-top:60px;padding-top:20px}
 
   .menu-btn{display:none}
@@ -131,11 +138,12 @@
 <div class="wrap">
   <nav class="side" id="side">
     <div class="brandmark"><span class="dot"></span>FundedNext</div>
-    <div class="ver">Content Distribution Playbook · Jul 2026</div>
+    <div class="ver">Content Distribution Playbook · Aug 2026 update</div>
     <h4>Foundations</h4>
     <a href="#overview">Overview</a>
     <a href="#model">The Distribution Model</a>
     <a href="#promote">How Platforms Promote You</a>
+    <a href="#originality">Staying Original</a>
     <a href="#platforms">Platform Cheat Sheet</a>
     <h4>The Plays</h4>
     <a href="#cliffhanger">The Cliffhanger System</a>
@@ -143,6 +151,7 @@
     <a href="#hooks">Hook Toolkit</a>
     <a href="#firsthour">First-Hour Tactics</a>
     <a href="#packaging">Thumbnails & Captions</a>
+    <a href="#bios">Bios & Search</a>
   </nav>
 
   <main>
@@ -157,7 +166,7 @@
         <span class="flag">TikTok</span>
         <span class="flag">X</span>
       </div>
-      <div class="internal">Internal document. Derived from the <code>platform-content-virality</code> skill (single source of truth, calibrated July 2026). When the skill updates, regenerate this page — don't hand-edit numbers.</div>
+      <div class="internal">Internal document. Derived from the <code>platform-content-virality</code> skill (single source of truth, calibrated July 2026; platform-news refresh Aug 2026). When the skill updates, regenerate this page — don't hand-edit numbers.</div>
     </div>
 
     <section id="overview">
@@ -296,6 +305,45 @@
       <div class="callout"><span class="lbl">The one rule under all of these</span>Discovery platforms are built to find <strong>new</strong> audiences for good content — which is why <strong>original, send-worthy</strong> posts win and recycled/watermarked ones get buried. Post native to each platform; never cross-post a clip with another app's watermark.</div>
     </section>
 
+    <section id="originality">
+      <h2>Staying Original — How Detection Works</h2>
+      <p class="sub">Discovery platforms reward original uploads and bury copies. They don't compare raw pixels — they build a small fuzzy <strong>fingerprint</strong> of a clip's visuals and audio and check whether a match already exists. If it does, <em>your</em> upload is scored as the copy and demoted. Three layers stack up, roughly the same across platforms.</p>
+
+      <div class="phase-row">
+        <div class="phase"><div class="n">LAYER 1</div><div class="nm">Perceptual hash</div><div class="gate">visual</div><p>Each frame → grayscale, resized to 32×32, DCT, keep the top-left 8×8 low-frequency coefficients, binarize against the median → a 64-bit fingerprint. Compared by Hamming distance: near-duplicates sit a few bits apart, unrelated clips ~32. Robust to mild recompression, resizing and small overlays; sensitive to flips, big crops and colour shifts.</p></div>
+        <div class="phase"><div class="n">LAYER 2</div><div class="nm">Audio fingerprint</div><div class="gate">sound</div><p>A separate system on the waveform: sample the spectrogram, find the loud peaks, hash their pattern (the Shazam method). Matches by bit-error-rate, threshold ≈0.30. Runs independent of the picture — lifting someone's exact audio flags you even if the visuals differ.</p></div>
+        <div class="phase"><div class="n">LAYER 3</div><div class="nm">Learned + watermark</div><div class="gate">neural</div><p>A neural model catches what simple hashing misses — flips, large crops, colour shifts and inserted watermarks — plus a dedicated detector for TikTok/CapCut logos.</p></div>
+      </div>
+      <p class="muted" style="font-size:14.5px;max-width:680px">This is why a filter, a small crop or a caption bar does <strong>not</strong> make a repost "original" — none of them change the low-frequency structure the hash actually reads.</p>
+
+      <h3>What Instagram does <span class="pill new">2026</span></h3>
+      <p>Visual fingerprinting flags content at roughly <strong>70%+ similarity</strong> <span class="muted">(approx)</span> as a repost and demotes it. It detects slightly edited versions, watermarked clips and re-uploads. On a confident match it recommends the original — and can <strong>replace the repost with the original creator's version</strong>. Aggregator penalty: 10+ reposts in 30 days removes the account from recommendations (now covers photos and carousels). <strong>Content Protection</strong> (launched Nov 2025) scans for matches to your own uploads and alerts you in the Professional Dashboard. Original content earns <strong>40–60% more</strong> distribution.</p>
+
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Platform</th><th>What it does about copies</th></tr></thead>
+          <tbody>
+            <tr><td><strong>YouTube</strong></td><td>Content ID fingerprints audio &amp; video against a reference database; a separate "reused / repetitious content" policy gates monetization for low-transformation re-uploads; watermarked Shorts are demoted.</td></tr>
+            <tr><td><strong>TikTok</strong></td><td>Audio and visual fingerprinting with sophisticated duplicate detection — resurfaces the older matching video, and buries re-uploads and watermarked files.</td></tr>
+            <tr><td><strong>Instagram / Facebook</strong></td><td>Meta fingerprints every clip, favours the first uploader, and excludes watermarked / reposted video from recommendations.</td></tr>
+            <tr><td><strong>X</strong></td><td>No Meta-style originality demotion — its levers are topical relevance (SimClusters) and Community Notes, not fingerprint matching.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Make content register as original</h3>
+      <ol class="steps">
+        <li><strong>Export one clean master; upload a separate clean file to each platform.</strong> Never download a published video from one app and re-upload it to another — both the audio fingerprint and any watermark will match.</li>
+        <li><strong>No platform watermarks, ever.</strong> The learned-embedding pass catches them even when cropped.</li>
+        <li><strong>Reset the fingerprint where it counts, not cosmetically.</strong> Filters, small crops and speed tweaks don't change the structure the hash reads. Your own footage, screen recordings, voiceover and your own (or substantially rebuilt) audio do. For FundedNext this is easy — dashboards, payout screens, charts and a creator's own face and voice are inherently un-fingerprinted raw material.</li>
+        <li><strong>If you must use an existing clip, transform it well past the threshold</strong> with real commentary, reaction or added analysis. A bare repost with a caption is not enough.</li>
+        <li><strong>Post natively; keep metadata clean.</strong></li>
+        <li><strong>Manage the account, not just the post</strong> — keep a high original-to-repost ratio, stay under the aggregator thresholds, and stay in one topic cluster.</li>
+      </ol>
+
+      <div class="callout warn"><span class="lbl">Replication: format, not file</span>When we scale a winning video across creators or accounts, replicate the <strong>format — not the file</strong>. Same hook, same structure, same beat-for-beat script, <strong>filmed fresh by each creator</strong> so every upload carries its own original fingerprint. Posting one identical file across many accounts is exactly what 2026 fingerprinting flags as unoriginal — the extra copies get demoted or replaced by whoever posted first. This keeps the replication engine and makes it originality-safe.</div>
+    </section>
+
     <section id="platforms">
       <h2>Platform Cheat Sheet</h2>
       <p class="sub">The 2026 gate metric and top signals per platform. These are the numbers to coach creators against.</p>
@@ -313,13 +361,13 @@
               <td><strong>YouTube<br>Shorts</strong></td>
               <td><span class="g">Viewed-vs-Swiped ≥50%</span> · <span class="g">Completion ≥70%</span></td>
               <td>Loop/rewatch ≥15–20% · cross-platform shares (WhatsApp/iMessage/X).</td>
-              <td>Frame 1 <em>is</em> the content — no intros. Priority test now <strong>30–60 min</strong>. Ranks in Search separately from long-form. The funnel to long-form is the whole point.</td>
+              <td>Frame 1 <em>is</em> the content — no intros. Priority test now <strong>30–60 min</strong>. Retention bands ≈<strong>65%</strong> (&lt;30s) · <strong>50%</strong> (30–60s) <span class="muted">(approx)</span>; under 40% is deprioritized regardless of CTR. Ranks in Search separately from long-form. The funnel to long-form is the whole point.</td>
             </tr>
             <tr>
               <td><strong>Instagram<br>Reels</strong></td>
               <td><span class="g">3-sec hold ≥60%</span></td>
               <td>Watch time (#1) · <strong>DM sends 3–5× likes</strong> (#1 for non-followers) · saves 3× · completion ≥50% for Explore.</td>
-              <td>Tested on <strong>non-followers first</strong>. Watermarked/reposted = excluded. "Your Algorithm" (now on Feed too) = match declared topics. Use Trial Reels. Raw &gt; polished.</td>
+              <td>Tested on <strong>non-followers first</strong>. Watermarked/reposted = excluded. <strong>Four separate ranking systems</strong> (Feed / Reels / Stories / Explore). "Your Algorithm" (now on Feed too) = match declared topics. Use Trial Reels; <strong>AI translations</strong> are now a named reach tactic. Raw &gt; polished.</td>
             </tr>
             <tr>
               <td><strong>Facebook</strong><br><span class="muted">Reels + Feed</span></td>
@@ -331,17 +379,33 @@
               <td><strong>TikTok</strong></td>
               <td><span class="g">Completion ≥70%</span> · "qualified views" = 5s+</td>
               <td>Watch time ~40–50% · shares 3× likes · rewatch · saves. Comments (quality, not count).</td>
-              <td><strong>Follower-first</strong> in 2026 — post when followers are online. Engagement bait is penalized. US algorithm forked (Jan 2026) — re-baseline US benchmarks.</td>
+              <td><strong>Follower-first</strong> in 2026 — post when followers are online. Engagement bait is penalized. US ops are now <strong>TikTok USDS JV</strong> (Oracle / Silver Lake / MGX; ByteDance 19.9%, closed Jan 22 2026) and Oracle is retraining the US algorithm — <strong>re-baseline US benchmarks, expect reach variance through 2026</strong>. Longer videos (1–3 min+) get more distribution when they hold completion.</td>
             </tr>
             <tr>
               <td><strong>X</strong></td>
               <td>First 6 hours = the whole window</td>
               <td>Reply-with-author-reply = <strong>150× a like</strong> · reply 27× · bookmark 10× · repost 2×.</td>
-              <td>Reply bait &gt; like bait. Links in the main post cut reach — put them in replies. Constructive framing (2026 sentiment scoring discounts rage-bait).</td>
+              <td>Reply bait &gt; like bait. Links in the main post cut reach (−50–90%) — put them in replies. Constructive framing (2026 sentiment scoring discounts rage-bait). Algorithm <strong>open-sourced Jan 2026</strong> (Phoenix, a Grok transformer — <code>github.com/xai-org/x-algorithm</code>); the Aug-2026 "Under the Hood" page shows your own visibility labels. Free reach ≈0 since Mar 2025, so <strong>Premium is effectively required</strong>; text out-performs video; a per-creator diversity cap means posting more <em>dilutes</em> reach (~145k SimClusters). Post 2–3×/day.</td>
             </tr>
           </tbody>
         </table>
       </div>
+
+      <h3>How YouTube counts a "view" now</h3>
+      <div class="tgroup card">
+        <div class="toggle" role="tablist">
+          <button class="on" data-state="live">Live now (2026)</button>
+          <button data-state="before">Before</button>
+        </div>
+        <div class="tg-pane" data-state="live">
+          <p>A view now registers <strong>the instant playback starts</strong> — no minimum watch time — across long-form, Shorts and live. Shorts moved to this in Mar 2025; it extended to <strong>all formats on Aug 24, 2026</strong>. Public view counts climb faster and are effectively a <strong>vanity number</strong>. The old watch-based metric survives, renamed <strong>"engaged views,"</strong> and <em>that</em> is the number that governs monetization and Partner Program eligibility (10M engaged Shorts views in 90 days — not total views).</p>
+          <div class="callout"><span class="lbl">RM takeaway</span>Report <strong>engaged views</strong> to partners, not the headline count. And note the algorithms are now formally split — a weak Short no longer drags down long-form.</div>
+        </div>
+        <div class="tg-pane" data-state="before" hidden>
+          <p>A view required <strong>meaningful watch time</strong> to register, so the public count roughly tracked real watching — and was the number partners and RMs reported. Under the old model the headline view figure and the "did people actually watch" signal were effectively the same number.</p>
+        </div>
+      </div>
+
       <p class="muted" style="font-size:13.5px">Weights are priors from platform research, not FN-calibrated production values. Treat as directional until the engine's calibration loop runs on our own data.</p>
     </section>
 
@@ -443,7 +507,7 @@
             <tr><td><strong>TikTok</strong></td><td>Short video</td><td>Post when your followers are online (they gate first) and reply to early comments with real answers — no "comment YES" bait.</td></tr>
             <tr><td><strong>YouTube</strong></td><td>Shorts</td><td>The first 30–60 min decides it: pin the long-form link in the comment, reply fast, confirm the loop is clean.</td></tr>
             <tr><td><strong>YouTube</strong></td><td>Long-form</td><td>Reply to 50+ comments in the first 2 hours (+15–20% reach); if 48h CTR is under 4%, swap the thumbnail (Test &amp; Compare).</td></tr>
-            <tr><td><strong>X</strong></td><td>Post / thread</td><td>Reply to your own post with context/link and answer every reply in the first hour — one engaged chain ≈ 150× a like. First 6h is the whole window.</td></tr>
+            <tr><td><strong>X</strong></td><td>Post / thread</td><td>Reply to your own post with context/link <strong>within the first 30 min</strong> and answer every reply — one engaged chain ≈ 150× a like. First 6h is the whole window.</td></tr>
           </tbody>
         </table>
       </div>
@@ -454,9 +518,9 @@
       <p class="sub">Packaging is a ranking surface, not decoration — and each content type is packaged differently.</p>
       <h3>YouTube long-form — thumbnail + title</h3>
       <ul>
-        <li>One authentic emotional face, one focal point, 3–5 word text hook that <strong>does not repeat the title</strong>.</li>
-        <li>Readable at 150px (mobile), high contrast, passes the grayscale test.</li>
-        <li>2026: <strong>authentic beats exaggerated</strong> — AI-looking thumbnails average ~30% lower CTR. Always Test &amp; Compare.</li>
+        <li>One authentic emotional face, one focal point, 3–5 word text hook that <strong>does not repeat the title</strong>. A face still wins — <strong>~69%</strong> of breakout thumbnails use one, ~80% among the biggest overperformers <span class="muted">(vidIQ, mid-2026)</span>.</li>
+        <li>Upload <strong>1280×720, 16:9</strong>. Readable at 150px (mobile), high contrast, passes the grayscale test. Keep key elements out of the <strong>bottom-right</strong> (duration badge).</li>
+        <li>2026: <strong>authentic beats exaggerated</strong> — AI-looking thumbnails average ~30% lower CTR. Always <strong>Test &amp; Compare</strong> — it now picks the winner by <strong>watch-time share</strong>, not just clicks. Change one element per test.</li>
       </ul>
       <h3>Short-form — the first frame <span class="muted" style="font-weight:400;font-size:14px">(Reels · Shorts · TikTok · FB Reels)</span></h3>
       <ul>
@@ -471,12 +535,33 @@
       <ul>
         <li>Word-by-word animated captions, 3–7 words at a time, in the center-third safe zone. +12–40% watch time.</li>
         <li>Captions are a <strong>ranking signal</strong> on IG and a search signal on YouTube/TikTok — write keywords in naturally, say them out loud in the first 5–30s.</li>
-        <li>Hashtags: IG 3–5 (classification, not discovery) · TikTok 3–5 niche · X max 1–2 · YouTube uses tags + description keywords.</li>
+        <li><strong>YouTube description:</strong> the first <strong>125 characters</strong> show in search before truncation — lead with the primary keyword and the video's value. Write for <strong>viewer intent</strong> (semantic coverage), not exact-match stuffing. Add <strong>chapters/timestamps</strong> (up to ~11% more average view duration; unlocks Google "Key Moments"). Aim 150–300 words. Back-end tags matter far less now.</li>
+        <li><strong>TikTok search</strong> is a primary channel (3B+ searches/day, ~84% in the exploration phase). Use <strong>Creator Search Insights → Content Gap</strong> to find high-demand, low-supply topics, and add approved <strong>keywords</strong> to a video's metadata (they work like hashtags).</li>
+        <li>Hashtags: IG 3–5 (classification, not discovery) · TikTok 3–5 niche · X max 1–2 · YouTube 3–5 <span class="muted">(over 15 and it ignores all of them)</span>.</li>
+      </ul>
+
+      <h3>YouTube localization — reaching other countries</h3>
+      <ul>
+        <li>The "recording location" field is minor metadata and does <strong>not</strong> push a video into that country. YouTube seeds to your own geography first, then expands via watch-history clusters and language.</li>
+        <li>The real geo levers: set the correct <strong>audio language</strong>, add <strong>captions/subtitles</strong> in target languages, and use <strong>multi-language audio</strong> tracks (auto-dubbing, which YouTube now promotes as a discovery tool).</li>
+        <li>Workflow: upload normally, check Analytics for countries already driving impressions despite the language mismatch, then <strong>localize into those markets</strong>. Don't obsess over the "filmed in" field.</li>
       </ul>
     </section>
 
+    <section id="bios">
+      <h2>Bios &amp; Search</h2>
+      <p class="sub">Search now drives discovery on every platform, so a bio is a ranking surface — not decoration. Front-load the searchable phrase, name the niche plainly, and give one reason to follow plus one link.</p>
+      <ul class="check">
+        <li><strong>Front-load the searchable phrase.</strong> Include the terms people actually search — <em>prop firm, funded trader, challenge, payout</em>.</li>
+        <li><strong>Name the niche plainly</strong> in the first line — one clear positioning statement, not a slogan.</li>
+        <li><strong>One reason to follow, one link.</strong> Don't split attention across five links.</li>
+        <li><strong>Niche consistency matters as much as the words</strong> — a bio and a feed that agree on one topic cluster rank better than a scattered one.</li>
+      </ul>
+      <div class="callout"><span class="lbl">FN bio pattern</span><strong>Searchable term + positioning + one link.</strong> e.g. "Funded trader · FundedNext challenges &amp; payouts, explained → [link]." Keep every creator in one lane.</div>
+    </section>
+
     <footer>
-      FundedNext Content Distribution Playbook · calibrated July 2026 · internal use only.<br>
+      FundedNext Content Distribution Playbook · calibrated July 2026 · platform-news refresh Aug 2026 · internal use only.<br>
       Generated from the <code>platform-content-virality</code> skill — the single source of truth for algorithm models, thresholds, and brand rules. Regenerate on skill update rather than hand-editing.
     </footer>
   </main>
@@ -497,6 +582,17 @@
     es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));map.get(e.target.id)?.classList.add('active')}})
   },{rootMargin:'-20% 0px -70% 0px'});
   document.querySelectorAll('main section').forEach(s=>obs.observe(s));
+
+  // Live-now / Before toggles
+  document.querySelectorAll('.tgroup').forEach(g=>{
+    const btns=g.querySelectorAll('.toggle button');
+    const panes=g.querySelectorAll('.tg-pane');
+    btns.forEach(b=>b.addEventListener('click',()=>{
+      const s=b.dataset.state;
+      btns.forEach(x=>x.classList.toggle('on',x===b));
+      panes.forEach(p=>{p.hidden = p.dataset.state!==s});
+    }));
+  });
 </script>
 </body>
 </html>

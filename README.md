@@ -15,7 +15,7 @@ packaging, the 2026 IG growth targets, and FN brand guardrails.
 
 ## Source of truth
 Content is generated from the `platform-content-virality` skill
-(`~/.claude/skills/platform-content-virality/`), calibrated **July 2026**.
+(`~/.claude/skills/platform-content-virality/`), calibrated **October 2026**.
 When the skill updates, **regenerate this page** rather than hand-editing numbers,
 so it can't drift from the engine.
 
